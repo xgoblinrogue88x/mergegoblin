@@ -2,6 +2,8 @@
 
 ## Current task: sort all 290 files into episode folders
 
+To undo a sort that has already run, download **downloads/Undo-Sort.zip**, extract it and run **Undo-Sort.bat**. Select the original video folder containing `_Sorting Reports` and the episode subfolders. The undo reads the original move logs, preflights all paths and size/timestamp checks, restores the logged videos without overwriting files, and recognizes already-restored files. Empty folders and report logs remain. See **UNDO_README.txt**. If the sorter has not run, no videos have moved and no undo is necessary.
+
 Download **downloads/Sort-Episodes.zip**, extract it, and double-click **Sort-Into-Episode-Folders.bat**. Select the folder containing the 290 videos. The sorter physically moves them into episode subfolders with their original filenames and contents. It uses the included **episode_sort_manifest.csv**; no old work folder, media-format checks, merging, or conversion is involved. See **SORTING_README.txt** for the complete instructions and assignment policy.
 
 All 290 known filenames have one destination: 276 files across 35 numbered episode folders, plus 14 files in **Jamaica Special (episode unverified)** because the supplied numbered playlists do not establish that special's number. Shared performances go once to their original episode; retrospective-only segments go to the retrospective folder. Supplemental guest/title assignments are explicitly labelled in the CSV. Missing files or destination conflicts stop the sort before any videos move. The included tests exercise all 290 moves, preservation of original names/bytes, idempotency, interruption/resume, and conflict protection.
