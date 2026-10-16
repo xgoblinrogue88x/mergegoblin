@@ -280,8 +280,8 @@ def executable(name):
     return found
 
 
-def run(args):
-    process = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding="utf-8", errors="replace")
+def run(args, timeout=None):
+    process = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding="utf-8", errors="replace", timeout=timeout)
     if process.returncode:
         raise RuntimeError(f"{Path(args[0]).name} failed:\n{process.stderr[-6000:]}")
     return process.stdout
@@ -312,7 +312,40 @@ def metadata_escape(text):
     return re.sub(r"([\\=;#\n\r])", lambda m: " " if m[0] in "\n\r" else "\\" + m[0], text)
 
 
-def merge_episode(episode, output_folder, convert=False):
+PRESETS = ("ultrafast", "superfast", "veryfast", "faster", "fast", "medium", "slow")
+
+
+def video_encoding_args(encoder, preset):
+    if preset not in PRESETS:
+        raise RuntimeError(f"Unsupported CPU preset: {preset}")
+    if encoder == "amd":
+        return ["-c:v", "h264_amf", "-quality", "speed", "-rc", "cqp", "-qp_i", "20", "-qp_p", "20", "-bf", "0"]
+    if encoder == "cpu":
+        return ["-c:v", "libx264", "-preset", preset, "-crf", "18"]
+    raise RuntimeError(f"Unsupported encoder: {encoder}")
+
+
+def resolve_encoder(encoder, preset):
+    if encoder not in ("cpu", "amd", "auto"):
+        raise RuntimeError(f"Unsupported encoder: {encoder}")
+    if encoder == "cpu":
+        video_encoding_args("cpu", preset)
+        return "cpu"
+    try:
+        # Test real driver initialization, not just whether FFmpeg lists AMF.
+        run([executable("ffmpeg"), "-v", "error", "-nostdin", "-f", "lavfi", "-i",
+             "color=size=1280x720:rate=30:duration=0.1", "-frames:v", "3",
+             *video_encoding_args("amd", preset), "-f", "null", "-"], timeout=20)
+    except (RuntimeError, subprocess.TimeoutExpired, OSError) as error:
+        if encoder == "amd":
+            raise RuntimeError(f"AMD hardware encoding is unavailable. Try --encoder cpu --preset veryfast.\n{error}") from error
+        print(f"AMD hardware encoding unavailable; using CPU preset {preset}.", flush=True)
+        return "cpu"
+    print("AMD hardware encoding test passed; using h264_amf.", flush=True)
+    return "amd"
+
+
+def merge_episode(episode, output_folder, convert=False, preset="veryfast", encoder="cpu"):
     if episode["issues"]:
         raise RuntimeError("Episode has unresolved matching issues.")
     output_folder = Path(output_folder).resolve()
@@ -357,12 +390,13 @@ def merge_episode(episode, output_folder, convert=False):
         for index, (path, (duration, _, info)) in enumerate(zip(paths, inspected)):
             staged = temporary / f"clip{index:04}.mkv"
             if convert:
+                print(f"  Converting clip {index + 1}/{len(paths)} with {encoder}: {path.name}", flush=True)
                 first_video = next(s for s in inspected[0][2]["streams"] if s["codec_type"] == "video")
                 width, height = int(first_video["width"]) // 2 * 2, int(first_video["height"]) // 2 * 2
                 filters = f"scale={width}:{height}:force_original_aspect_ratio=decrease,pad={width}:{height}:(ow-iw)/2:(oh-ih)/2,setsar=1,fps=30,format=yuv420p"
                 run([ffmpeg, "-v", "error", "-xerror", "-nostdin", "-n", "-i", str(path), "-map", "0:v:0", "-map", "0:a:0",
                      "-map_metadata", "-1", "-map_chapters", "-1", "-vf", filters, "-af", "aresample=48000,asetpts=PTS-STARTPTS",
-                     "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-c:a", "aac", "-ar", "48000", "-ac", "2", "-b:a", "192k", str(staged)])
+                     *video_encoding_args(encoder, preset), "-c:a", "aac", "-ar", "48000", "-ac", "2", "-b:a", "192k", str(staged)])
                 duration = media_info(staged)[0]
             else:
                 # Simple staging names avoid Windows apostrophe/backslash escaping in concat lists.
@@ -384,6 +418,7 @@ def merge_episode(episode, output_folder, convert=False):
         chapter_file = temporary / "chapters.txt"
         chapter_file.write_text("\n".join(metadata) + "\n", encoding="utf-8")
         partial = temporary / "merged.mkv"
+        print("  Joining clips and writing chapters...", flush=True)
         run([ffmpeg, "-v", "error", "-xerror", "-nostdin", "-n", "-f", "concat", "-safe", "1", "-i", str(listing),
              "-f", "ffmetadata", "-i", str(chapter_file), "-map", "0:v:0", "-map", "0:a:0", "-map_metadata", "1", "-map_chapters", "1", "-c", "copy", str(partial)])
         merged = probe(partial)
@@ -399,6 +434,7 @@ def merge_episode(episode, output_folder, convert=False):
                 raise RuntimeError("Chapter timestamp verification failed; output not accepted.")
             cursor = end
         # Decode the entire result to catch corrupt joins; no re-encoding here.
+        print("  Checking the complete episode for decoding errors...", flush=True)
         run([ffmpeg, "-v", "error", "-xerror", "-nostdin", "-i", str(partial), "-map", "0:v:0", "-map", "0:a:0", "-f", "null", "-"])
         # Hard-link publication is atomic and never overwrites an existing output.
         try:
@@ -414,12 +450,13 @@ def merge_episode(episode, output_folder, convert=False):
                     destination.unlink()
                     raise
         stat = destination.stat()
-        write_json(receipt, {"request": request, "output_size": stat.st_size, "output_mtime_ns": stat.st_mtime_ns})
+        write_json(receipt, {"request": request, "output_size": stat.st_size, "output_mtime_ns": stat.st_mtime_ns,
+                             "encoding": {"encoder": encoder, "preset": preset} if convert else None})
     print(f"Completed: {name}", flush=True)
     return "merged"
 
 
-def merge_plan(plan, output, numbers=None, convert=False):
+def merge_plan(plan, output, numbers=None, convert=False, preset="veryfast", encoder="cpu"):
     executable("ffmpeg")
     executable("ffprobe")
     ready = [e for e in plan["episodes"] if not e["issues"] and (not numbers or e["number"] in numbers)]
@@ -432,11 +469,13 @@ def merge_plan(plan, output, numbers=None, convert=False):
             uses[str(Path(clip["path"]).resolve())].append(clip.get("id"))
     if any(len(values) > 1 and (len(set(values)) != 1 or None in values) for values in uses.values()):
         raise RuntimeError("Selected episodes assign a local file to different or unknown video IDs.")
+    if convert:
+        encoder = resolve_encoder(encoder, preset)
     errors = []
     for episode in ready:
         print(f"Processing E{episode['number']:02} ({len(episode['clips'])} chapters)...", flush=True)
         try:
-            merge_episode(episode, output, convert)
+            merge_episode(episode, output, convert, preset, encoder)
         except (RuntimeError, OSError, ValueError, KeyError) as exc:
             errors.append(f"E{episode['number']:02}: {exc}")
             print(f"HELD: {errors[-1]}", flush=True)
@@ -487,6 +526,8 @@ def main(argv=None):
     merging.add_argument("--output", required=True)
     merging.add_argument("--episodes", type=int, nargs="+")
     merging.add_argument("--convert", action="store_true", help="Re-encode to consistent H.264/AAC; slower, lossy")
+    merging.add_argument("--preset", choices=PRESETS, default="veryfast", help="CPU encoding speed (default: veryfast); faster presets generally produce larger files")
+    merging.add_argument("--encoder", choices=("cpu", "amd", "auto"), default="cpu", help="auto tests AMD hardware encoding, falling back to CPU; requires --convert")
     merging.add_argument("--reviewed", action="store_true", required=True, help="Confirm episode identities and playlist sequence were reviewed")
     args = parser.parse_args(argv)
     if args.command == "catalog":
@@ -494,7 +535,9 @@ def main(argv=None):
     elif args.command == "scan":
         scan(args.input, args.catalog, args.plan, args.refresh, args.matches)
     elif args.command == "merge":
-        merge_plan(read_json(args.plan), args.output, args.episodes, args.convert)
+        if not args.convert and (args.encoder != "cpu" or args.preset != "veryfast"):
+            raise RuntimeError("--encoder and --preset apply to --convert mode only.")
+        merge_plan(read_json(args.plan), args.output, args.episodes, args.convert, args.preset, args.encoder)
     else:
         executable("ffmpeg")
         executable("ffprobe")
@@ -512,7 +555,7 @@ def main(argv=None):
             return
         output = choose_folder("Choose a separate folder for finished episodes")
         convert = input("Use slower format conversion for every episode? Type CONVERT, or Enter for lossless joins: ").strip() == "CONVERT"
-        merge_plan(plan, output, convert=convert)
+        merge_plan(plan, output, convert=convert, encoder="auto" if convert else "cpu")
 
 
 if __name__ == "__main__":

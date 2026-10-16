@@ -38,7 +38,15 @@ When updating the downloaded tool, copy the existing **work** folder into the ne
 5. Read **work/plan.txt**, which opens automatically. Check the episode number, featured artist, and chapter sequence against its playlist link. Playlist order is the proposed sequence; the uploader can reorder it, and it is not independent proof of original broadcast order.
 6. Type **MERGE** to process the fully matched episodes, or press Enter to stop after the scan. Choose a separate output folder. Press Enter for fast, lossless joining; type **CONVERT** only if you want all selected clips normalized to H.264/AAC.
 
-Conversion is slower and lossy. It uses the first clip's dimensions, letterboxes other aspect ratios, and outputs 30 fps, H.264 CRF 18, stereo AAC 48 kHz. Originals remain available. Fast mode holds episodes with differing stream formats instead of risking broken joins.
+Conversion is slower and lossy. It uses the first clip's dimensions, letterboxes other aspect ratios, and outputs 30 fps H.264 with stereo AAC 48 kHz. CPU mode uses CRF 18 with the `veryfast` preset by default (older versions used `medium`). Originals remain available. Fast mode holds episodes with differing stream formats instead of risking broken joins.
+
+### Faster conversion on the Beelink GTR5
+
+Use `--convert --encoder auto --preset veryfast` to try the AMD hardware video encoder, falling back to faster CPU encoding if the initial hardware test fails. The conversion wizard also tries this automatically. The test actually initializes FFmpeg's `h264_amf` encoder; merely having an AMD GPU or an encoder in FFmpeg's list does not prove driver support. Hardware encoding requires an FFmpeg build with AMF plus working AMD graphics drivers. The Windows/GTR5 hardware path cannot be exercised in this Linux development environment; fallback and failure handling are tested, and real CPU conversion is tested.
+
+AMD mode uses H.264 AMF's speed setting and constant QP 20, without B frames. Its quality and file size are not equivalent to x264 CRF 18. Both modes re-encode; faster encoding can require larger files for comparable visual quality. Scaling and other filters still run on the CPU, and full decoding validation still runs after joining.
+
+For even faster CPU conversion, use `--encoder cpu --preset ultrafast` at the cost of larger files. Use `--preset medium` for the old CPU preset. If AMD passes its startup test but fails on an actual clip, the episode is held; rerun with `--encoder cpu`. There is no runtime guarantee before measuring your files on your PC. Completed episodes with matching receipts are reused regardless of the new encoding setting; unfinished episodes restart. Stop the old job with Ctrl+C and wait for the PowerShell prompt before starting a new one. Per-clip progress and join/validation stages are now printed.
 
 ## Review rules
 
@@ -78,6 +86,7 @@ $mgPython = "$env:LOCALAPPDATA\MergeGoblin\venv\Scripts\python.exe"
 & $mgPython mergegoblin.py scan --input "D:\Daryl clips" --matches work/matches.json
 & $mgPython mergegoblin.py merge --output "D:\Finished episodes" --reviewed
 & $mgPython mergegoblin.py merge --output "D:\Finished episodes" --episodes 7 12 --convert --reviewed
+& $mgPython mergegoblin.py merge --output "D:\Finished episodes" --episodes 1 3 4 5 6 7 8 9 10 --convert --encoder auto --preset veryfast --reviewed
 ```
 
 `--reviewed` confirms you checked episode identity and order. It does not bypass held matches. Cached metadata is reused unless `--refresh` is specified. If YouTube extraction fails, no new catalog or merge plan is accepted; update yt-dlp (`python -m pip install --upgrade yt-dlp`) and inspect the reported error. Public access can still fail because of regional restrictions, authentication challenges, removals, or YouTube changes. No first-run guarantee is possible before that live scan.

@@ -31,6 +31,22 @@ class MatchingTests(unittest.TestCase):
         for title in titles:
             (self.root / (title + ".mkv")).write_bytes(b"fixture")
 
+    def test_auto_encoder_falls_back_when_driver_probe_fails(self):
+        with patch.object(app, "run", side_effect=RuntimeError("AMF driver missing")), patch.object(app, "executable", return_value="ffmpeg"):
+            self.assertEqual(app.resolve_encoder("auto", "veryfast"), "cpu")
+            with self.assertRaisesRegex(RuntimeError, "AMD hardware encoding is unavailable"):
+                app.resolve_encoder("amd", "veryfast")
+
+    def test_auto_encoder_requires_successful_real_probe(self):
+        with patch.object(app, "run", return_value="") as execute, patch.object(app, "executable", return_value="ffmpeg"):
+            self.assertEqual(app.resolve_encoder("auto", "veryfast"), "amd")
+            self.assertIn("h264_amf", execute.call_args.args[0])
+            self.assertEqual(execute.call_args.kwargs["timeout"], 20)
+
+    def test_auto_encoder_timeout_falls_back(self):
+        with patch.object(app, "run", side_effect=subprocess.TimeoutExpired("ffmpeg", 20)), patch.object(app, "executable", return_value="ffmpeg"):
+            self.assertEqual(app.resolve_encoder("auto", "veryfast"), "cpu")
+
     def test_actual_channel_listing_finds_88_single_episodes(self):
         listing = Path(__file__).parent / "fixtures" / "channel_playlists.txt"
         rows = [line.split(" | ", 1) for line in listing.read_text(encoding="utf-8").splitlines() if line.strip()]
@@ -225,6 +241,15 @@ class VideoTests(unittest.TestCase):
         self.assertFalse((self.output / episode["output"]).exists())
         self.assertEqual(app.merge_episode(episode, self.output, convert=True), "merged")
         self.assertEqual(len(app.probe(self.output / episode["output"])["chapters"]), 2)
+
+    def test_auto_encoder_and_ultrafast_conversion_preserve_chapters(self):
+        episode = self.episode(mixed=True)
+        app.merge_plan({"episodes": [episode]}, self.output, convert=True, preset="ultrafast", encoder="auto")
+        self.assertEqual(len(app.probe(self.output / episode["output"])["chapters"]), 2)
+        receipt = app.read_json((self.output / episode["output"]).with_suffix(".receipt.json"))
+        self.assertEqual(receipt["encoding"]["preset"], "ultrafast")
+        # Finished outputs are retained even if the next run requests another preset.
+        self.assertEqual(app.merge_episode(episode, self.output, convert=True, preset="medium"), "skipped")
 
     def test_never_overwrites_existing_output(self):
         episode = self.episode()
