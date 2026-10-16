@@ -30,6 +30,25 @@ class MatchingTests(unittest.TestCase):
         for title in titles:
             (self.root / (title + ".mkv")).write_bytes(b"fixture")
 
+    def test_actual_channel_listing_finds_88_single_episodes(self):
+        listing = Path(__file__).parent / "fixtures" / "channel_playlists.txt"
+        rows = [line.split(" | ", 1) for line in listing.read_text(encoding="utf-8").splitlines() if line.strip()]
+        found = {}
+        for playlist_id, title in rows:
+            number = app.episode_number(title)
+            if number is not None:
+                self.assertNotIn(number, found, f"Duplicate episode number: {title}")
+                found[number] = title
+        self.assertEqual(len(found), 88)
+        self.assertEqual(set(range(1, 92)) - set(found), {2, 13, 29})
+        self.assertIn("Chromeo", found[10])
+        self.assertIn("Todd Rundgren", found[23])
+        self.assertIn("Todd Rundgren", found[40])
+        for title in ("Episodes 1 - 10", "Episodes 81 - 91", "Episode 1 - 10", "#1 - 10",
+                      "Todd Rundgren", "Daryl Hall - Live at the Ryman Auditorium 2022", "#92 - Guest"):
+            with self.subTest(title=title):
+                self.assertIsNone(app.episode_number(title))
+
     def test_spelling_variants_and_playlist_order_preserve_intros(self):
         self.files("Daryl Hall & Plain White Ts - End", "Daryl Hall & Plain White T's - Song",
                    "Daryl Hall & Plain White T's - Song (Intro)")
@@ -106,16 +125,18 @@ class MatchingTests(unittest.TestCase):
                 calls.append(url)
                 assert download is False
                 if url == app.CHANNEL:
-                    return {"entries": [{"id": "PLtest", "title": "Live From Daryl's House - Episode 07"},
+                    return {"entries": [{"id": "PLtest", "title": "#7 - Daryl Hall hosts Test Guest on Live From Daryl's House"},
                                         {"id": "PLother", "title": "Episode 92"},
-                                        {"id": "PLunknown", "title": "Unnumbered music"}]}
+                                        {"id": "PLunknown", "title": "Unnumbered music"},
+                                        {"id": "PLcollection", "title": "Episodes 1 - 10"}]}
                 return {"entries": [{"id": "abcdefghijk", "title": "Song"}, None]}
         with patch.dict(sys.modules, {"yt_dlp": types.SimpleNamespace(YoutubeDL=YoutubeDL)}):
             data = app.fetch_catalog(self.root / "catalog.json")
         self.assertEqual(len(calls), 2)
-        self.assertEqual(len(data["ignored_playlists"]), 2)
+        self.assertEqual(len(data["ignored_playlists"]), 3)
         self.assertEqual(data["episodes"][0]["number"], 7)
         self.assertEqual(data["episodes"][0]["clips"][1]["title"], "[Unavailable video]")
+        self.assertEqual(len(app.read_json(self.root / "channel-playlists.json")["playlists"]), 4)
 
 
 @unittest.skipUnless(shutil.which("ffmpeg") and shutil.which("ffprobe"), "FFmpeg integration dependencies missing")

@@ -8,13 +8,13 @@ Output format:
 Live from Daryl's House - E07 - Featured Artist.mkv
 ```
 
-The episode number comes from an explicitly numbered playlist title, never an artist-name guess. Numbers 1–91 are in scope. Windows-invalid characters in artist names are replaced with ` - `.
+The episode number comes from an explicitly numbered playlist title, including the channel's `#10 - Daryl Hall hosts Chromeo…` format, never an artist-name guess. Numbers 1–91 are in scope. Range collections such as `Episodes 1 - 10` are excluded. Windows-invalid characters in artist names are replaced with ` - `.
 
 ## What has actually been checked
 
 The supplied filename list contains **201 files and 25 guest groups**, after normalizing two spelling variations. Names are suitable for automatic matching, but do not encode episode order or number. Guster has one file, Todd Rundgren two, and Jose Feliciano three; these counts are reasons to check completeness, not proof of missing clips.
 
-**Live YouTube inspection is still unverified:** this development environment's network proxy returns HTTP 403 for YouTube. The program retrieves the catalog on your PC. The extraction logic is tested against fixtures, not the live channel. Do not treat the supplied program as a pre-verified mapping of all 91 episodes.
+**Playlist discovery has now been checked against the user's actual channel export:** its titles/IDs identify 88 individual episode playlists, with E02, E13, and E29 absent from that listing. The parser regression test uses that export, including both Todd Rundgren appearances (E23 and E40), range collections, and unrelated playlists. Actual clip lists and their order still need to be fetched and checked on your PC: this development environment's network proxy returns HTTP 403 for YouTube. Do not treat a missing playlist as proof the episode never existed.
 
 The merger has been exercised with real FFmpeg-generated video clips on Linux, including chapter names/times, incompatible formats, conversion, corrupt inputs, preservation of originals, and repeat runs. The Windows launcher and file-picker workflow still require a Windows run. Actual downloaded videos were not supplied, so their media properties have not been checked.
 
@@ -41,7 +41,7 @@ Conversion is slower and lossy. It uses the first clip's dimensions, letterboxes
 - Exact normalized titles or an embedded YouTube video ID identify a clip. Punctuation/case/accent variations are ignored. Separate song intros remain separate chapters.
 - Similar titles are suggestions only. Missing clips, duplicate candidates, duplicate episode numbers, clips reused between playlists, or mixed guest names hold an episode back.
 - **Complete means matched to every visible playlist entry.** YouTube can hide unavailable entries, and a playlist can omit episode material. The app cannot certify a full original broadcast from playlist data alone.
-- Episodes without visible explicitly numbered playlists are listed as undiscovered. All other playlist titles/IDs are saved under `ignored_playlists` in `work/catalog.json` for diagnosis. An unexpected title format should be inspected, not assigned a guessed number.
+- Episodes without visible explicitly numbered playlists are listed as undiscovered. All other playlist titles/IDs are saved under `ignored_playlists` in `work/catalog.json` for diagnosis. The complete discovered listing is also saved to `work/channel-playlists.json` before fetching clips, including when no episode titles are recognized. An unexpected title format should be inspected, not assigned a guessed number.
 - A filename match cannot prove two files contain different footage or that a segment does not overlap another. Review questionable clips; the app does not trim, deduplicate by video content, or invent missing material.
 
 ### Resolve a title mismatch

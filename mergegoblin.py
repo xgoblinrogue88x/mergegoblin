@@ -17,6 +17,22 @@ import unicodedata
 CHANNEL = "https://www.youtube.com/@realdarylhall/playlists"
 VIDEO_EXTENSIONS = {".mkv", ".mp4", ".webm", ".mov", ".m4v", ".avi"}
 EPISODE = re.compile(r"\b(?:episode|ep\.?|e)\s*[#:\-]?\s*(\d{1,3})\b", re.I)
+HASH_EPISODE = re.compile(r"^\s*#\s*(\d{1,3})\s*(?=[\-–—:]|$)")
+
+
+def episode_number(title):
+    # The channel uses '#10 - Daryl Hall hosts Chromeo…', not 'Episode 10'.
+    # Collections such as 'Episodes 1 - 10' must never become single episodes.
+    if re.search(r"\bepisodes\b", title, flags=re.I):
+        return None
+    match = HASH_EPISODE.search(title) or EPISODE.search(title)
+    if not match:
+        return None
+    # Also reject singular labels used for a numeric range.
+    if re.match(r"\s*[-–—]\s*\d+\b", title[match.end():]):
+        return None
+    number = int(match[1])
+    return number if 1 <= number <= 91 else None
 
 
 def write_json(path, data):
@@ -75,16 +91,19 @@ def fetch_catalog(path):
         channel = extract(ydl, CHANNEL)
         if not channel or channel.get("entries") is None:
             raise RuntimeError("YouTube returned no playlist listing. No catalog saved.")
+        entries = list(channel["entries"])
+        discovery_path = Path(path).with_name("channel-playlists.json")
+        write_json(discovery_path, {"source": CHANNEL, "playlists": [
+            {"id": (e or {}).get("id"), "title": (e or {}).get("title")} for e in entries]})
         episodes, ignored = [], []
-        for entry in channel["entries"]:
+        for entry in entries:
             if not entry:
                 raise RuntimeError("Channel contains an unreadable playlist entry; retry before merging.")
             title = entry.get("title") or ""
-            match = EPISODE.search(title)
-            if not match or not 1 <= int(match[1]) <= 91:
+            number = episode_number(title)
+            if number is None:
                 ignored.append({"title": title, "id": entry.get("id")})
                 continue
-            number = int(match[1])
             playlist_id = entry.get("id")
             if not playlist_id or not re.fullmatch(r"[A-Za-z0-9_-]+", playlist_id):
                 raise RuntimeError(f"Unusable playlist ID for {title!r}.")
@@ -100,7 +119,7 @@ def fetch_catalog(path):
                               "playlist_index": (clip or {}).get("playlist_index") or index})
             episodes.append({"number": number, "title": title, "url": url, "clips": clips})
     if not episodes:
-        raise RuntimeError("No explicitly numbered episode playlists found. Playlist titles need inspection; do not guess numbers.")
+        raise RuntimeError(f"No single-episode playlists recognized. Titles and IDs were saved to {discovery_path} for inspection.")
     catalog = {"source": CHANNEL, "episodes": episodes, "ignored_playlists": ignored}
     write_json(path, catalog)
     print(f"Saved {len(episodes)} episode playlists to {path}")
