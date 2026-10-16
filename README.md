@@ -20,7 +20,7 @@ The merger has been exercised with real FFmpeg-generated video clips on Linux, i
 
 ## Windows setup
 
-1. Install **Python 3.12 or newer** from <https://www.python.org/downloads/windows/>. Include the Python launcher and Tcl/Tk (the standard installer includes these).
+1. Install **Python 3.12 or newer** from <https://www.python.org/downloads/windows/>. Enable **Add python.exe to PATH** and include Tcl/Tk. The `py` launcher is optional: Start.bat also checks `python`, `python3`, and standard Python installation folders. Alternatively run `winget install --id Python.Python.3.12 --exact` in PowerShell.
 2. Install **FFmpeg**, including `ffprobe`. One option in PowerShell is:
 
    ```powershell
@@ -29,7 +29,7 @@ The merger has been exercised with real FFmpeg-generated video clips on Linux, i
 
    Reopen your terminal afterward. Alternatively follow the Windows download links at <https://ffmpeg.org/download.html>, and put `ffmpeg.exe` and `ffprobe.exe` in a `tools` folder beside `mergegoblin.py`. Both executables are required. The app does not download executable binaries itself.
 
-3. Extract this tool into its own folder, separate from your video collection. Double-click **Start.bat**.
+3. Extract this tool into its own folder, separate from your video collection. Double-click **Start.bat**. Local folders and UNC network shares are supported by the launcher. It uses `pushd` to temporarily map network paths and keeps its Python environment locally at `%LOCALAPPDATA%\MergeGoblin\venv`. An initial CMD warning about UNC paths can still appear before the script starts; the script then switches to the mapped folder. Moving the app to a local folder is also fine; your videos can stay on the NAS.
 4. Choose the folder containing your 201 clips. The first scan reads public playlist metadata from <https://www.youtube.com/@realdarylhall/playlists>. No YouTube account or Tartube database is required for public metadata.
 5. Read **work/plan.txt**, which opens automatically. Check the episode number, featured artist, and chapter sequence against its playlist link. Playlist order is the proposed sequence; the uploader can reorder it, and it is not independent proof of original broadcast order.
 6. Type **MERGE** to process the fully matched episodes, or press Enter to stop after the scan. Choose a separate output folder. Press Enter for fast, lossless joining; type **CONVERT** only if you want all selected clips normalized to H.264/AAC.
@@ -60,15 +60,16 @@ For a deliberately incomplete episode or corrected order, the catalog is editabl
 
 ## Command-line use
 
-Use the virtual environment created by Start.bat, or install `requirements.txt` into your own Python environment. Commands below are run from this tool's folder:
+Use the local virtual environment created by Start.bat, or install `requirements.txt` into your own Python environment. Commands below are run in PowerShell from this tool's folder:
 
 ```powershell
-.venv\Scripts\python.exe mergegoblin.py catalog
-.venv\Scripts\python.exe mergegoblin.py scan --input "D:\Daryl clips"
-.venv\Scripts\python.exe mergegoblin.py scan --input "D:\Daryl clips" --refresh
-.venv\Scripts\python.exe mergegoblin.py scan --input "D:\Daryl clips" --matches work/matches.json
-.venv\Scripts\python.exe mergegoblin.py merge --output "D:\Finished episodes" --reviewed
-.venv\Scripts\python.exe mergegoblin.py merge --output "D:\Finished episodes" --episodes 7 12 --convert --reviewed
+$mgPython = "$env:LOCALAPPDATA\MergeGoblin\venv\Scripts\python.exe"
+& $mgPython mergegoblin.py catalog
+& $mgPython mergegoblin.py scan --input "D:\Daryl clips"
+& $mgPython mergegoblin.py scan --input "D:\Daryl clips" --refresh
+& $mgPython mergegoblin.py scan --input "D:\Daryl clips" --matches work/matches.json
+& $mgPython mergegoblin.py merge --output "D:\Finished episodes" --reviewed
+& $mgPython mergegoblin.py merge --output "D:\Finished episodes" --episodes 7 12 --convert --reviewed
 ```
 
 `--reviewed` confirms you checked episode identity and order. It does not bypass held matches. Cached metadata is reused unless `--refresh` is specified. If YouTube extraction fails, no new catalog or merge plan is accepted; update yt-dlp (`python -m pip install --upgrade yt-dlp`) and inspect the reported error. Public access can still fail because of regional restrictions, authentication challenges, removals, or YouTube changes. No first-run guarantee is possible before that live scan.
