@@ -1,0 +1,37 @@
+COLLECTION INSPECTION
+
+201 filenames; 25 guest groups after punctuation normalization.
+Guest group is not necessarily one episode: returning guests require playlist matching.
+Episode numbers and sequence have NOT been verified against the live channel.
+
+Files by guest:
+ 10  Chromeo
+  8  Company Of Thieves
+  9  Diane Birch
+ 15  Eli "Paperboy' Reed
+ 10  Eric Hutchinson
+ 10  Finger Eleven
+  9  Fitz and the Tantrums
+  1  Guster
+  8  Jimmy Wayne
+  3  Jose Feliciano
+ 10  Kevin Rudolf
+ 10  KT Tunstall
+  8  Matt Nathanson
+  8  Monte Montgomery
+  5  Neon Trees
+  8  Nick Lowe
+  7  Parachute
+  8  Patrick Stump
+  8  Plain White T's
+  8  Rob Thomas (Matchbox Twenty)
+  9  Sharon Jones
+ 10  Smokey Robinson
+ 10  The Bacon Brothers
+  7  The Doors
+  2  Todd Rundgren
+
+Known spelling differences: Plain White Ts / Plain White T's; quotation marks in Eli Paperboy Reed.
+Small groups to check: Guster (1), Todd Rundgren (2), Jose Feliciano (3).
+These counts alone do not establish completeness.
+No downloaded media files were available for codec or playback inspection.
