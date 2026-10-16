@@ -10,6 +10,33 @@ Live from Daryl's House - E07 - Featured Artist.mkv
 
 The episode number and featured artist/special name come from the playlist title, including the channel's `#10 - Daryl Hall hosts Chromeo…` format, never an artist-name guess from a local clip. E32 is named `Retrospective 2`, and E39 is named `New Years Eve Special`. Numbers 1–91 are in scope. Range collections such as `Episodes 1 - 10` are excluded. Windows-invalid characters in artist names are replaced with ` - `.
 
+## Batch MKVToolNix: original quality and resolution
+
+**Batch-MKVToolNix.bat** processes the complete, unambiguous episodes in your existing `work/plan.json`. It never re-encodes, resizes, changes frame rate, or converts audio. Your source files remain at their existing paths. Each accepted episode is written as one MKV with song chapters and the planned episode number/name.
+
+1. Stop any old conversion job. Download and extract the updated ZIP into a new app folder.
+2. Copy the existing **work** folder into that new app folder. This preserves your catalog, paths, matching choices, and verified playlist ordering. Do not move the source clips.
+3. Install MKVToolNix if needed: `winget install --id MoritzBunkus.MKVToolNix --exact`. Your existing Python environment and FFmpeg/ffprobe setup are reused. If you kept ffprobe.exe in the old app's tools folder, copy that folder too.
+4. Double-click **Batch-MKVToolNix.bat**. You do not need to open a Python file or enter a merge command.
+
+Completed files go to **Videos/LFDH Original Quality**. Read **batch-summary.txt** there for the outcome of every episode. `_reports/E##/formats.txt` identifies each source's video/audio codec, track IDs, and dimensions. Diagnostic logs/options/chapters are kept in the same report folder. A previous completed output is skipped only when its receipt and file metadata still match; existing outputs are never overwritten.
+
+The batch explicitly maps video-to-video and audio-to-audio, including clips with different track ordering. This addresses one possible cause of the E01 test failure. However, it cannot guarantee that E01 or all other episodes will append: actual codec incompatibility is not fixed by changing track mapping. Different video codecs, pixel/display dimensions, audio codecs, sample rates, or channel counts are held by the conservative preflight rather than changed. MKVToolNix can impose additional compatibility limits. Every episode held for these reasons remains available as its original separate clips. Different-resolution sources are not silently scaled to the first clip.
+
+Incomplete/ambiguous episodes are skipped; the tool never drops missing clips to manufacture a supposedly complete episode. MKVToolNix warnings or failed output checks retain a **candidate.NEEDS-REVIEW.mkv** in the episode report folder, not an accepted final output. Other episodes continue processing. E02, E13 and E29 are absent from the supplied catalog and are listed as absent; no file is invented for them.
+
+Before acceptance, the program checks duration and chapters, then hashes the compressed video and audio packets of the sources and output in order. The hashes and packet counts must match. This checks original-stream preservation without decoding or encoding. It requires extra disk reads, but avoids software video encoding. Rare lossless bitstream rewrites can fail the strict packet identity test too; those candidates are held for review. Packet preservation does not prove original media were uncorrupted or that editorial ordering/audio sync is correct. Check playback and transitions on a representative finished episode.
+
+Full decoding validation is optional and never changes the media. To select just the first batch and also decode-check the results, use PowerShell in the app folder:
+
+```powershell
+& "$env:LOCALAPPDATA\MergeGoblin\venv\Scripts\python.exe" .\mkv_batch.py --episodes 1 3 4 5 6 7 8 9 10 --decode-check
+```
+
+Omit `--decode-check` for faster packet-verification-only operation. Omit `--episodes` to attempt all matched episodes. Optional `--output "D:\Original quality episodes"` selects a different output folder. Optional `--mkvmerge "C:\Custom tools\MKVToolNix\mkvmerge.exe"` selects a nonstandard MKVToolNix installation. No encoding preset or conversion option exists in this batch program.
+
+The batch integration tests exercise actual MKVToolNix appending, three clips with alternating audio/video track order, packet identity, resolution preservation, resume behavior, mixed-codec/resolution holds, warnings, continuation after failures, source preservation, and episode selection. Actual Windows source files remain to be tested on the user's PC.
+
 ## Episode 1: MKVToolNix test without re-encoding
 
 This is deliberately limited to E01. Keep the existing `work/plan.json`; do not rescan or download videos again. Install MKVToolNix from <https://mkvtoolnix.download/downloads.html#windows> if needed, or use:
