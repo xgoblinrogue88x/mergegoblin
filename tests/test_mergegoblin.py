@@ -13,7 +13,8 @@ import mergegoblin as app
 
 
 def catalog(titles, number=7):
-    return {"episodes": [{"number": number, "title": f"Episode {number} - Test Guest",
+    artist = app.guest(titles[0]) if titles else "Test Guest"
+    return {"episodes": [{"number": number, "title": f"Episode {number} - Daryl Hall hosts {artist} on Live From Daryl's House",
                            "url": "https://www.youtube.com/playlist?list=PLtest",
                            "clips": [{"id": f"video{i:06}", "title": t} for i, t in enumerate(titles)]}]}
 
@@ -71,13 +72,50 @@ class MatchingTests(unittest.TestCase):
         self.assertIsNone(episode["clips"][0]["path"])
         self.assertTrue(episode["clips"][0]["suggestions"])
 
-    def test_returning_guest_clip_not_assigned_to_two_episodes(self):
+    def test_shared_video_id_allowed_in_original_and_retrospective(self):
         title = "Daryl Hall & Guest - Song"
         self.files(title)
         data = catalog([title])
         data["episodes"].extend(catalog([title], 8)["episodes"])
         episodes = app.make_plan(self.root, data)["episodes"]
-        self.assertTrue(all(any("more than once" in issue for issue in e["issues"]) for e in episodes))
+        self.assertTrue(all(not e["issues"] for e in episodes))
+        self.assertTrue(all(any("Verified shared video" in note for note in e["notes"]) for e in episodes))
+
+    def test_same_title_different_ids_requires_identity_then_respects_manual_match(self):
+        title = "Daryl Hall & Guest - Song"
+        self.files(title)
+        data = catalog([title])
+        other = catalog([title], 8)["episodes"][0]
+        other["clips"][0]["id"] = "differentid"
+        data["episodes"].append(other)
+        episodes = app.make_plan(self.root, data)["episodes"]
+        self.assertTrue(all(not e["clips"][0]["path"] for e in episodes))
+        self.assertTrue(all("different YouTube video IDs" in e["issues"][0] for e in episodes))
+        resolved = app.make_plan(self.root, data, {"video000000": title + ".mkv"})["episodes"]
+        self.assertEqual(resolved[0]["issues"], [])
+        self.assertIsNone(resolved[1]["clips"][0]["path"])
+        with self.assertRaisesRegex(RuntimeError, "different video IDs"):
+            app.make_plan(self.root, data, {"video000000": title + ".mkv", "differentid": title + ".mkv"})
+
+    def test_actual_catalog_retrospective_identity_and_duplicate_fixes(self):
+        fixture = app.read_json(Path(__file__).parent / "fixtures" / "catalog_cases.json")
+        self.files(*(Path(name).stem for name in fixture["local_filenames"]))
+        episodes = {e["number"]: e for e in app.make_plan(self.root, fixture)["episodes"]}
+        for number in (4, 7, 22, 24, 26, 28):
+            self.assertEqual(episodes[number]["issues"], [], number)
+        self.assertEqual(len(episodes[7]["clips"]), 8)
+        self.assertTrue(any("Removed repeated playlist entry" in n for n in episodes[7]["notes"]))
+        self.assertEqual(episodes[32]["output"], "Live from Daryl's House - E32 - Retrospective 2.mkv")
+        self.assertEqual(episodes[39]["output"], "Live from Daryl's House - E39 - New Years Eve Special.mkv")
+        self.assertEqual(len(episodes[32]["issues"]), 1)
+        self.assertIn("different YouTube video IDs", episodes[32]["issues"][0])
+        for number in (27, 32):
+            pick = next(c for c in episodes[number]["clips"] if c["title"].endswith("Pick A Number (Live From Daryl's House)"))
+            self.assertIsNone(pick["path"])
+        first_intro = next(c for c in episodes[30]["clips"] if "I Miss You (Intro)" in c["title"])
+        recap_intro = next(c for c in episodes[32]["clips"] if "I Miss You (Intro)" in c["title"])
+        self.assertNotEqual(first_intro["path"], recap_intro["path"])
+        self.assertTrue(first_intro["path"] and recap_intro["path"])
 
     def test_duplicate_local_titles_held(self):
         title = "Daryl Hall & Guest - Song"
@@ -215,6 +253,18 @@ class VideoTests(unittest.TestCase):
         self.assertIn("MATCHED", plan_path.with_suffix(".txt").read_text(encoding="utf-8"))
         app.run([sys.executable, script, "merge", "--plan", str(plan_path), "--output", str(self.output), "--reviewed"])
         self.assertEqual(len(app.probe(self.output / episode["output"])["chapters"]), 2)
+
+    def test_batch_can_reuse_verified_video_but_rejects_conflicting_identity(self):
+        episode = self.episode()
+        recap = copy.deepcopy(episode)
+        recap.update(number=32, output="Live from Daryl's House - E32 - Retrospective 2.mkv")
+        plan = {"episodes": [episode, recap]}
+        app.merge_plan(plan, self.output)
+        self.assertTrue((self.output / episode["output"]).exists())
+        self.assertTrue((self.output / recap["output"]).exists())
+        recap["clips"][0]["id"] = "differentid"
+        with self.assertRaisesRegex(RuntimeError, "different or unknown video IDs"):
+            app.merge_plan(plan, self.output)
 
 
 if __name__ == "__main__":

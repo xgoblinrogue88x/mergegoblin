@@ -49,6 +49,11 @@ def read_json(path):
 
 def normal(text):
     text = re.sub(r"\s*\(Live From Daryl['’]s House\)\s*", " ", text, flags=re.I)
+    return literal_normal(text)
+
+
+def literal_normal(text):
+    """Keep show labels so different titled uploads remain distinguishable."""
     text = unicodedata.normalize("NFKD", text).casefold()
     return "".join(c for c in text if c.isalnum() and not unicodedata.combining(c))
 
@@ -70,6 +75,14 @@ def chapter_title(title):
 
 def safe_name(text):
     return re.sub(r'[<>:"/\\|?*\x00-\x1f]', " - ", text).rstrip(" .")[:180]
+
+
+def episode_label(title):
+    body = re.sub(r"^\s*(?:#\s*\d+|(?:episode|ep\.?|e)\s*#?\s*\d+)\s*[-–—:]?\s*", "", title, flags=re.I)
+    body = re.sub(r"\s+(?:on|of)\s+Live From Daryl['’]s House.*$", "", body, flags=re.I)
+    body = re.sub(r"^Daryl Hall hosts\s+", "", body, flags=re.I)
+    body = re.sub(r"^Daryl Hall['’]s\s+", "", body, flags=re.I)
+    return body.strip().replace("’", "'").replace('"', "") or "UNRESOLVED"
 
 
 def fetch_catalog(path):
@@ -139,76 +152,120 @@ def make_plan(folder, catalog, matches=None):
         if not isinstance(filename, str) or filename not in by_name:
             raise RuntimeError(f"Manual match {video_id!r} must name a video in the selected folder.")
     titles = defaultdict(list)
+    literal_titles = defaultdict(list)
     ids = defaultdict(list)
+    claims = defaultdict(set)
     for file in files:
         titles[normal(filename_title(file))].append(file)
+        literal_titles[literal_normal(filename_title(file))].append(file)
         match = re.search(r"\[([A-Za-z0-9_-]{11})\]$", file.stem)
         if match:
             ids[match[1]].append(file)
+            claims[file].add(match[1])
+    for video_id, filename in matches.items():
+        claims[by_name[filename]].add(video_id)
+    if any(len(values) > 1 for values in claims.values()):
+        raise RuntimeError("One local file is assigned to different video IDs. Correct matches.json before scanning.")
+    catalog_titles = defaultdict(set)
+    catalog_literals = defaultdict(set)
+    for episode in catalog["episodes"]:
+        for clip in episode["clips"]:
+            if clip.get("id"):
+                catalog_titles[normal(clip["title"])].add(clip["id"])
+                catalog_literals[literal_normal(clip["title"])].add(clip["id"])
     episode_counts = Counter(e["number"] for e in catalog["episodes"])
     episodes = []
     for episode in sorted(catalog["episodes"], key=lambda x: x["number"]):
         number = episode["number"]
         if not isinstance(number, int) or not 1 <= number <= 91:
             raise RuntimeError(f"Invalid episode number in catalog: {number!r}")
-        clips, issues = [], []
+        clips, issues, notes = [], [], []
+        seen_ids = set()
         if episode_counts[number] != 1:
             issues.append("Multiple playlists claim this episode number; resolve against an episode guide.")
         for clip in episode["clips"]:
             title = clip["title"]
-            override = matches.get(clip.get("id"))
-            candidates = [by_name[override]] if override else ids.get(clip.get("id"), []) or titles.get(normal(title), [])
+            identity_conflict = False
+            video_id = clip.get("id")
+            if video_id and video_id in seen_ids:
+                notes.append(f"Removed repeated playlist entry for video {video_id}: {title}")
+                continue
+            if video_id:
+                seen_ids.add(video_id)
+            override = matches.get(video_id)
+            candidates = [by_name[override]] if override else ids.get(video_id, [])
+            match_method = "manual" if override else "video_id" if candidates else None
+            if not candidates:
+                candidates = literal_titles.get(literal_normal(title), [])
+                match_method = "exact_title"
+                identities = catalog_literals[literal_normal(title)]
+                if not candidates:
+                    candidates = titles.get(normal(title), [])
+                    match_method = "normalized_title"
+                    identities = catalog_titles[normal(title)]
+                candidates = [p for p in candidates if not claims[p] or claims[p] == {video_id}]
+                if candidates and len(identities) > 1:
+                    issues.append(f"Title belongs to different YouTube video IDs; explicit match needed: {title} ({', '.join(sorted(identities))})")
+                    identity_conflict = True
+                    candidates = []
             candidate = candidates[0] if len(candidates) == 1 else None
-            row = {"title": title, "chapter": chapter_title(title), "id": clip.get("id"), "path": str(candidate) if candidate else None}
+            row = {"title": title, "chapter": chapter_title(title), "id": video_id,
+                   "match_method": match_method if candidate else None, "path": str(candidate) if candidate else None}
             if candidate:
                 stat = candidate.stat()
                 row.update(size=stat.st_size, mtime_ns=stat.st_mtime_ns)
             else:
-                issues.append(f"{'Ambiguous' if candidates else 'Missing'} clip: {title}")
+                if not identity_conflict:
+                    issues.append(f"{'Ambiguous' if candidates else 'Missing'} clip: {title}")
                 close = difflib.get_close_matches(normal(title), list(titles), n=3, cutoff=0.7)
                 row["suggestions"] = [str(p) for key in close for p in titles[key]]
             clips.append(row)
         if not clips:
             issues.append("Playlist has no visible clips.")
-        matched = [row for row in clips if row["path"]]
-        guests = {normal(guest(Path(row["path"]).stem)) for row in matched}
-        if len(guests) > 1:
-            issues.append("Multiple featured artist names; check episode identity.")
-        artist = guest(matched[0]["title"]) if matched else "UNRESOLVED"
-        artist = artist.replace("’", "'").replace('"', "").replace("' Reed", " Reed")
+        artist = episode_label(episode["title"])
         episodes.append({"number": number, "playlist_title": episode["title"],
                          "playlist_url": episode["url"],
                          "output": safe_name(f"Live from Daryl's House - E{number:02} - {artist}") + ".mkv",
-                         "issues": issues, "clips": clips})
+                         "issues": issues, "notes": notes, "clips": clips})
     uses = defaultdict(list)
     for episode in episodes:
         for clip in episode["clips"]:
             if clip["path"]:
-                uses[clip["path"]].append(episode)
+                uses[clip["path"]].append((episode, clip["id"]))
     for path, used in uses.items():
-        if len(used) > 1:
-            for episode in used:
-                issue = f"Clip used more than once across catalog: {Path(path).name}"
+        identities = {video_id for _, video_id in used}
+        if len(used) > 1 and (len(identities) > 1 or None in identities):
+            for episode, _ in used:
+                issue = f"Local file matched to different or unknown video IDs: {Path(path).name}"
                 if issue not in episode["issues"]:
                     episode["issues"].append(issue)
+        elif len(used) > 1:
+            numbers = sorted({e["number"] for e, _ in used})
+            for episode, _ in used:
+                episode["notes"].append(f"Verified shared video {next(iter(identities))} in episodes {numbers}: {Path(path).name}")
     found = {e["number"] for e in episodes}
-    return {"version": 1, "input_folder": str(folder),
+    return {"version": 2, "input_folder": str(folder),
             "notice": "Playlist order needs human review; complete means matched to visible playlist, not verified broadcast completeness.",
             "undiscovered_episodes": sorted(set(range(1, 92)) - found),
             "unmatched_files": [str(p) for p in files if str(p) not in uses], "episodes": episodes}
 
 
 def save_report(plan, path):
+    ready = sum(not e["issues"] for e in plan["episodes"])
     lines = ["LIVE FROM DARYL'S HOUSE — MERGE REVIEW", "", plan["notice"],
+             f"Fully matched with no holds: {ready} of {len(plan['episodes'])} discovered episodes.",
              "Missing episode playlists: " + ", ".join(f"E{n:02}" for n in plan["undiscovered_episodes"]), ""]
     for episode in plan["episodes"]:
         status = "HOLD" if episode["issues"] else "MATCHED — review order"
         lines.extend([f"{status}: {episode['output']}", episode["playlist_title"], episode["playlist_url"]])
         for i, clip in enumerate(episode["clips"], 1):
             lines.append(f"  {i:02}. {clip['title']} => {Path(clip['path']).name if clip['path'] else 'NOT MATCHED'}")
+            if not clip["path"] and clip.get("id"):
+                lines.append(f"      Expected video: https://www.youtube.com/watch?v={clip['id']}")
             for suggestion in clip.get("suggestions", []):
                 lines.append(f"      Possible match (not selected): {Path(suggestion).name}")
         lines.extend("  ! " + issue for issue in episode["issues"])
+        lines.extend("  Note: " + note for note in episode.get("notes", []))
         lines.append("")
     lines.append("LOCAL FILES NOT ASSIGNED TO A PLAYLIST:")
     lines.extend(plan["unmatched_files"])
@@ -368,10 +425,13 @@ def merge_plan(plan, output, numbers=None, convert=False):
     ready = [e for e in plan["episodes"] if not e["issues"] and (not numbers or e["number"] in numbers)]
     if not ready:
         raise RuntimeError("No complete, unambiguous episodes selected. Read the review report.")
-    # An edited plan must not accidentally place the same clip in different outputs.
-    paths = [str(Path(c["path"]).resolve()) for e in ready for c in e["clips"]]
-    if len(paths) != len(set(paths)):
-        raise RuntimeError("Selected episodes reuse input files; resolve before merging.")
+    # Reuse is valid for retrospective episodes only when video identity agrees.
+    uses = defaultdict(list)
+    for episode in ready:
+        for clip in episode["clips"]:
+            uses[str(Path(clip["path"]).resolve())].append(clip.get("id"))
+    if any(len(values) > 1 and (len(set(values)) != 1 or None in values) for values in uses.values()):
+        raise RuntimeError("Selected episodes assign a local file to different or unknown video IDs.")
     errors = []
     for episode in ready:
         print(f"Processing E{episode['number']:02} ({len(episode['clips'])} chapters)...", flush=True)

@@ -8,7 +8,7 @@ Output format:
 Live from Daryl's House - E07 - Featured Artist.mkv
 ```
 
-The episode number comes from an explicitly numbered playlist title, including the channel's `#10 - Daryl Hall hosts Chromeo…` format, never an artist-name guess. Numbers 1–91 are in scope. Range collections such as `Episodes 1 - 10` are excluded. Windows-invalid characters in artist names are replaced with ` - `.
+The episode number and featured artist/special name come from the playlist title, including the channel's `#10 - Daryl Hall hosts Chromeo…` format, never an artist-name guess from a local clip. E32 is named `Retrospective 2`, and E39 is named `New Years Eve Special`. Numbers 1–91 are in scope. Range collections such as `Episodes 1 - 10` are excluded. Windows-invalid characters in artist names are replaced with ` - `.
 
 ## What has actually been checked
 
@@ -17,6 +17,10 @@ The supplied filename list contains **201 files and 25 guest groups**, after nor
 **Playlist discovery has now been checked against the user's actual channel export:** its titles/IDs identify 88 individual episode playlists, with E02, E13, and E29 absent from that listing. The parser regression test uses that export, including both Todd Rundgren appearances (E23 and E40), range collections, and unrelated playlists. Actual clip lists and their order still need to be fetched and checked on your PC: this development environment's network proxy returns HTTP 403 for YouTube. Do not treat a missing playlist as proof the episode never existed.
 
 The merger has been exercised with real FFmpeg-generated video clips on Linux, including chapter names/times, incompatible formats, conversion, corrupt inputs, preservation of originals, and repeat runs. The Windows launcher and file-picker workflow still require a Windows run. Actual downloaded videos were not supplied, so their media properties have not been checked.
+
+The supplied catalog and local-filename inventory were also replayed against the corrected scanner. That predicts **27 fully matched episodes**, up from 21. This is filename/metadata validation, not validation of the actual videos. E07 contains a repeated entry for the same YouTube ID; the second occurrence is omitted. Six performances shared with E32 have identical IDs in their original episodes. Eli Reed's `Pick A Number` has different IDs in E27 and E32 despite an identical title, so neither version is assigned by title alone.
+
+When updating the downloaded tool, copy the existing **work** folder into the new extracted app folder before running Start.bat. This reuses your catalog and explicit matches while regenerating the plan; there is no need to fetch all playlist metadata again. Keep your downloaded videos in their existing folder.
 
 ## Windows setup
 
@@ -38,8 +42,10 @@ Conversion is slower and lossy. It uses the first clip's dimensions, letterboxes
 
 ## Review rules
 
-- Exact normalized titles or an embedded YouTube video ID identify a clip. Punctuation/case/accent variations are ignored. Separate song intros remain separate chapters.
-- Similar titles are suggestions only. Missing clips, duplicate candidates, duplicate episode numbers, clips reused between playlists, or mixed guest names hold an episode back.
+- Embedded video IDs or explicit matches are preferred. Otherwise full titles are tried before titles normalized to remove the show suffix. This distinguishes the two differently titled `I Miss You` intro uploads. Punctuation/case/accent variations are ignored. Separate song intros remain separate chapters.
+- A title mapping to different YouTube video IDs requires an explicit identity match; a single similarly named local file cannot silently stand in for both. Similar titles are suggestions only. Missing clips, unresolved duplicate candidates, duplicate episode numbers, or conflicting video identities hold an episode back.
+- A video can legitimately appear in its original episode and a retrospective when its YouTube ID agrees. It is a separate chapter in each output. Duplicate occurrences of the same video ID within one playlist are omitted after the first, with a report note. Clip order otherwise remains the playlist order.
+- Mixed guest names are expected in retrospectives and specials; the output name comes from the playlist rather than the first clip. Parenthetical band names on individual clip titles do not hold an otherwise matched episode back.
 - **Complete means matched to every visible playlist entry.** YouTube can hide unavailable entries, and a playlist can omit episode material. The app cannot certify a full original broadcast from playlist data alone.
 - Episodes without visible explicitly numbered playlists are listed as undiscovered. All other playlist titles/IDs are saved under `ignored_playlists` in `work/catalog.json` for diagnosis. The complete discovered listing is also saved to `work/channel-playlists.json` before fetching clips, including when no episode titles are recognized. An unexpected title format should be inspected, not assigned a guessed number.
 - A filename match cannot prove two files contain different footage or that a segment does not overlap another. Review questionable clips; the app does not trim, deduplicate by video content, or invent missing material.
@@ -55,6 +61,8 @@ Keep your source filenames unchanged. Create `work/matches.json` mapping the vid
 ```
 
 Run Start.bat again. It applies these explicit choices and regenerates the report. The app does not accept a path outside the selected folder. Only make an override after checking the clip's identity.
+
+An explicit match reserves that file for its selected video ID. A different ID with an identical title will remain unmatched. For the two `Pick A Number` uploads, compare <https://www.youtube.com/watch?v=Vl6gZwnM4hw> (E27) and <https://www.youtube.com/watch?v=8Rry_PXRPPY> (E32) with your local file before choosing. Different IDs do not prove different footage, but identical titles do not prove identical footage either. To represent both IDs, use separately identified local files; the tool does not assign one file to conflicting IDs. Missing-clip rows in the report include their expected YouTube links.
 
 For a deliberately incomplete episode or corrected order, the catalog is editable JSON: make a separate copy, document the correction, and scan that copy using `--catalog`. Removing unavailable entries makes the resulting output partial; do not mistake this for recovered material. The default behavior holds incomplete episodes.
 

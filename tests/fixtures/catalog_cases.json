@@ -1,0 +1,876 @@
+{
+  "episodes": [
+    {
+      "number": 22,
+      "title": "#22 - Daryl Hall hosts Smokey Robinson on Live From Daryl's House",
+      "url": "https://www.youtube.com/playlist?list=PLINSQGXREtvcZBYfgAB-yMv_7DtIaULIp",
+      "clips": [
+        {
+          "id": "zKNpWpkA6f4",
+          "title": "Daryl Hall & Smokey Robinson - Intro (Live From Daryl's House)",
+          "playlist_index": 1
+        },
+        {
+          "id": "bULuGNEMpi8",
+          "title": "Daryl Hall & Smokey Robinson - Being With You (Live From Daryl's House)",
+          "playlist_index": 2
+        },
+        {
+          "id": "JYM0m7XmHv4",
+          "title": "Daryl Hall & Smokey Robinson - Girlfriend (Live From Daryl's House)",
+          "playlist_index": 3
+        },
+        {
+          "id": "NlzWBrOArYA",
+          "title": "Daryl Hall & Smokey Robinson - Don't Know Why (Live From Daryl's House)",
+          "playlist_index": 4
+        },
+        {
+          "id": "s2tE4lJLnFo",
+          "title": "Daryl Hall & Smokey Robinson - Tears Of A Clown (Live From Daryl's House)",
+          "playlist_index": 5
+        },
+        {
+          "id": "goUz1L9LRCA",
+          "title": "Daryl Hall & Smokey Robinson - Going To A Go Go (Live From Daryl's House)",
+          "playlist_index": 6
+        },
+        {
+          "id": "tsJ_J5KVKLM",
+          "title": "Daryl Hall & Smokey Robinson - Sara Smile / Ooh Baby Baby (Live From Daryl's House)",
+          "playlist_index": 7
+        },
+        {
+          "id": "EAh5DseKbl4",
+          "title": "Daryl Hall & Smokey Robinson - I Can't Go For That (No Can Do) (Live From Daryl's House)",
+          "playlist_index": 8
+        },
+        {
+          "id": "Tc1vj3KN4eA",
+          "title": "Daryl Hall & Smokey Robinson - I've Been Good To You (Live From Daryl's House)",
+          "playlist_index": 9
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "title": "#7 - Daryl Hall hosts Mutlu & Chuck Prophet on Live From Daryl's House",
+      "url": "https://www.youtube.com/playlist?list=PLINSQGXREtvdm0FCMWSNKYl3blDhH0Yw5",
+      "clips": [
+        {
+          "id": "mRC5_9xRhlg",
+          "title": "Daryl Hall, Mutlu & Chuck Prophet - Living It (Live From Daryl's House)",
+          "playlist_index": 1
+        },
+        {
+          "id": "N1zpSaNHK10",
+          "title": "Daryl Hall, Mutlu & Chuck Prophet - Foolish Pride (Live From Daryl's House)",
+          "playlist_index": 2
+        },
+        {
+          "id": "VDnZiIJej8Q",
+          "title": "Daryl Hall, Mutlu & Chuck Prophet - Maneater (Live From Daryl's House)",
+          "playlist_index": 3
+        },
+        {
+          "id": "noyzrmdZ6YQ",
+          "title": "Daryl Hall, Mutlu & Chuck Prophet - See What It Brings (Live From Daryl's House)",
+          "playlist_index": 4
+        },
+        {
+          "id": "hiz9Fo_vrag",
+          "title": "Daryl Hall, Mutlu & Chuck Prophet - Summertime Thing (Live From Daryl's House)",
+          "playlist_index": 5
+        },
+        {
+          "id": "ChPaZV0uRms",
+          "title": "Daryl Hall, Mutlu & Chuck Prophet - Soul Sister (Live From Daryl's House)",
+          "playlist_index": 6
+        },
+        {
+          "id": "V0n-JPdSfQs",
+          "title": "Daryl Hall, Mutlu & Chuck Prophet - You Did (Live From Daryl's House)",
+          "playlist_index": 7
+        },
+        {
+          "id": "N1zpSaNHK10",
+          "title": "Daryl Hall, Mutlu & Chuck Prophet - Foolish Pride (Live From Daryl's House)",
+          "playlist_index": 8
+        },
+        {
+          "id": "Vyn4NrMt-II",
+          "title": "Daryl Hall, Mutlu & Chuck Prophet - You Make My Dreams (Live From Daryl's House)",
+          "playlist_index": 9
+        }
+      ]
+    },
+    {
+      "number": 39,
+      "title": "#39 - New Years Eve Special on Live From Daryl's House",
+      "url": "https://www.youtube.com/playlist?list=PLINSQGXREtveyLJaQUV5Zvzxffg5YpJ8C",
+      "clips": [
+        {
+          "id": "hdjNEGWDQFA",
+          "title": "Daryl Hall - New Year's Eve Special - Rob Thomas - Kiss On My List (Live From Daryl's House)",
+          "playlist_index": 1
+        },
+        {
+          "id": "fTkm9282bh8",
+          "title": "Daryl Hall - New Year's Eve Special - Neon Trees - Animal (Live From Daryl's House)",
+          "playlist_index": 2
+        },
+        {
+          "id": "y4gCUciM3Tc",
+          "title": "Daryl Hall - New Year's Eve Special - Train - Hey Soul Sister (Live From Daryl's House)",
+          "playlist_index": 3
+        },
+        {
+          "id": "Eln2Z7HbYGs",
+          "title": "Sharon Jones - Gotta Thing On My Mind (Live From Daryl's House - New Year's Eve Special)",
+          "playlist_index": 4
+        },
+        {
+          "id": "Zo7ZC1Bqlh4",
+          "title": "Daryl Hall - New Year's Eve Special - Eli 'Paperboy' Reed - Pick A Number (Live From Daryl's House)",
+          "playlist_index": 5
+        },
+        {
+          "id": "fcrewPbP14U",
+          "title": "Smokey Robinson - Sara Smile / Ooh Baby Baby (Live From Daryl's House - New Year's Eve Special)",
+          "playlist_index": 6
+        },
+        {
+          "id": "BRmBg0DyOSg",
+          "title": "Daryl Hall - New Year's Eve Special - Todd Rundgren - The Want Of A Nail (Live From Daryl's House)",
+          "playlist_index": 7
+        },
+        {
+          "id": "yJkg06ETPAA",
+          "title": "Daryl Hall - New Year's Eve Special - Patrick Stump - What A Catch, Donnie (Live From Daryl's House)",
+          "playlist_index": 8
+        },
+        {
+          "id": "jt33NL2xfYA",
+          "title": "Toots & The Maytals - Reggae Got Soul (Live From Daryl's House - New Year's Eve Special)",
+          "playlist_index": 9
+        },
+        {
+          "id": "JrSf84ZmcWc",
+          "title": "Fitz & The Tantrums - Breakin' The Chains of Love (Live From Daryl's House - New Year's Eve Special)",
+          "playlist_index": 10
+        },
+        {
+          "id": "sfSzzL2jifo",
+          "title": "Daryl Hall - New Year's Eve Special - Train - Wait For Me (Live From Daryl's House)",
+          "playlist_index": 11
+        },
+        {
+          "id": "-OWwZbilYEU",
+          "title": "Daryl Hall - New Year's Eve Special - Jose Feliciano - Feliz Navidad (Live From Daryl's House)",
+          "playlist_index": 12
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "title": "#4 - Daryl Hall hosts Travis McCoy on Live From Daryl's House",
+      "url": "https://www.youtube.com/playlist?list=PLINSQGXREtvdCPvIUiH-K5ECj0LdRRBEr",
+      "clips": [
+        {
+          "id": "SyC9iBPfVs8",
+          "title": "Daryl Hall & Travis McCoy (Gym Class Heroes) - Intro (Live From Daryl's House)",
+          "playlist_index": 1
+        },
+        {
+          "id": "3n1k8N75BQU",
+          "title": "Daryl Hall & Travis McCoy (Gym Class Heroes) - Uncanny (Live From Daryl's House)",
+          "playlist_index": 2
+        },
+        {
+          "id": "ffamY3iyb6w",
+          "title": "Daryl Hall & Travis McCoy (Gym Class Heroes) - The Queen & I (Live From Daryl's House)",
+          "playlist_index": 3
+        },
+        {
+          "id": "hOswmPW4QkU",
+          "title": "Daryl Hall & Travis McCoy - Be Thankful For What You Got (Live From Daryl's House)",
+          "playlist_index": 4
+        },
+        {
+          "id": "LM06WjNjxQI",
+          "title": "Daryl Hall & Travis McCoy (Gym Class Heroes) - Can't Stop Dreaming (Live From Daryl's House)",
+          "playlist_index": 5
+        },
+        {
+          "id": "geacjCqftNg",
+          "title": "Daryl Hall & Travis McCoy (Gym Class Heroes) - Wake Up Everybody (Live From Daryl's House)",
+          "playlist_index": 6
+        },
+        {
+          "id": "fhM2OwOrKeo",
+          "title": "Daryl Hall & Travis McCoy - Don't Let Me Be Misunderstood (Live From Daryl's House)",
+          "playlist_index": 7
+        },
+        {
+          "id": "3EY_NJQVk8Y",
+          "title": "Daryl Hall & Travis McCoy (Gym Class Heroes) - Everytime You Go Away (Live From Daryl's House)",
+          "playlist_index": 8
+        },
+        {
+          "id": "MyFS1uGNj6o",
+          "title": "Daryl Hall & Travis McCoy (Gym Class Heroes) - Valentine (Live From Daryl's House)",
+          "playlist_index": 9
+        },
+        {
+          "id": "wuprxaQC9sE",
+          "title": "Daryl Hall & Travis McCoy (Gym Class Heroes) - End (Live From Daryl's House)",
+          "playlist_index": 10
+        }
+      ]
+    },
+    {
+      "number": 32,
+      "title": "#32 - Daryl Hall's Retrospective 2 on Live From Daryl's House",
+      "url": "https://www.youtube.com/playlist?list=PLINSQGXREtveA99ijYCJc744xX7GHJi_m",
+      "clips": [
+        {
+          "id": "nemjyEg5ORk",
+          "title": "Daryl Hall & Smokey Robinson - Sara Smile / Ohh Baby Baby (Intro)",
+          "playlist_index": 1
+        },
+        {
+          "id": "tsJ_J5KVKLM",
+          "title": "Daryl Hall & Smokey Robinson - Sara Smile / Ooh Baby Baby (Live From Daryl's House)",
+          "playlist_index": 2
+        },
+        {
+          "id": "rmRrqBFFVog",
+          "title": "Daryl Hall & Todd Rundgren - The Want Of A Nail (Live From Daryl's House)",
+          "playlist_index": 3
+        },
+        {
+          "id": "V4VHVJx8zn8",
+          "title": "Daryl Hall & Diane Birch - Daydreaming (Intro)",
+          "playlist_index": 4
+        },
+        {
+          "id": "FPYJUxTOy7s",
+          "title": "Daryl Hall & Diane Birch - Daydreaming (Live From Daryl's House)",
+          "playlist_index": 5
+        },
+        {
+          "id": "qiJ0RiaEwTA",
+          "title": "Daryl Hall & Eli \"Paperboy' Reed - Pick A Number (Intro)",
+          "playlist_index": 6
+        },
+        {
+          "id": "8Rry_PXRPPY",
+          "title": "Daryl Hall & Eli \"Paperboy\" Reed - Pick A Number (Live From Daryl's House)",
+          "playlist_index": 7
+        },
+        {
+          "id": "Qov__NTMjGg",
+          "title": "Daryl Hall & Toots & The Maytals - Reggae Got Soul (Intro)",
+          "playlist_index": 8
+        },
+        {
+          "id": "GdKyVQHCtXk",
+          "title": "Daryl Hall & Toots and the Maytals - Reggae Got Soul (Live From Daryl's House)",
+          "playlist_index": 9
+        },
+        {
+          "id": "jeNUmTKYNR8",
+          "title": "Tribute to T-Bone - I Miss You (Intro)",
+          "playlist_index": 10
+        },
+        {
+          "id": "mvBpknUcO3U",
+          "title": "Tribute to T-Bone - I Miss You (Live From Daryl's House)",
+          "playlist_index": 11
+        },
+        {
+          "id": "6-F00NFAKUY",
+          "title": "Daryl Hall & Jimmy Wayne - Kerosene Kid (Intro)",
+          "playlist_index": 12
+        },
+        {
+          "id": "uadYC1H0RoY",
+          "title": "Daryl Hall & Jimmy Wayne - Kerosene Kid (Live From Daryl's House)",
+          "playlist_index": 13
+        },
+        {
+          "id": "MRbWIk7DxzM",
+          "title": "Daryl Hall Retrospective 2 - End",
+          "playlist_index": 14
+        }
+      ]
+    },
+    {
+      "number": 30,
+      "title": "#30 - Daryl Hall's Tribute to T-Bone",
+      "url": "https://www.youtube.com/playlist?list=PLINSQGXREtvflWAdBuyAKxYLXsA8OZYZu",
+      "clips": [
+        {
+          "id": "mNA_ktTwAPM",
+          "title": "Tribute to T-Bone - If I Don't Have You Intro (Live From Daryl's House)",
+          "playlist_index": 1
+        },
+        {
+          "id": "xd82w6qk9Dw",
+          "title": "Tribute to T-Bone - If I Don't Have You (Live From Daryl's House)",
+          "playlist_index": 2
+        },
+        {
+          "id": "9wDSM7fpGIs",
+          "title": "Tribute to T-Bone - Please Send Me Someone (Intro) (Live From Daryl's House)",
+          "playlist_index": 3
+        },
+        {
+          "id": "xcOETQuwJIE",
+          "title": "Tribute to T-Bone - Please Send Me Someone (Live From Daryl's House)",
+          "playlist_index": 4
+        },
+        {
+          "id": "csogV5fRq_o",
+          "title": "Tribute to T-Bone - In The Night (Intro) (Live From Daryl's House)",
+          "playlist_index": 5
+        },
+        {
+          "id": "Ofd5gChIGP0",
+          "title": "Tribute to T-Bone - In The Night (Live From Daryl's House)",
+          "playlist_index": 6
+        },
+        {
+          "id": "X2iVTOginLY",
+          "title": "Tribute to T-Bone - I Miss You (Intro) (Live From Daryl's House)",
+          "playlist_index": 7
+        },
+        {
+          "id": "mvBpknUcO3U",
+          "title": "Tribute to T-Bone - I Miss You (Live From Daryl's House)",
+          "playlist_index": 8
+        },
+        {
+          "id": "IIFDzepjclY",
+          "title": "Tribute to T-Bone - Change Of Season (Intro) (Live From Daryl's House)",
+          "playlist_index": 9
+        },
+        {
+          "id": "MvPYq08awWY",
+          "title": "Tribute to T-Bone - Change Of Season (Live From Daryl's House)",
+          "playlist_index": 10
+        },
+        {
+          "id": "DYSlgOoVLNo",
+          "title": "Tribute to T-Bone - Caravan Of Love (Intro) (Live From Daryl's House)",
+          "playlist_index": 11
+        },
+        {
+          "id": "6zWN5E4esjM",
+          "title": "Tribute to T-Bone - Caravan Of Love (Live From Daryl's House)",
+          "playlist_index": 12
+        },
+        {
+          "id": "PMnI_zF8xlE",
+          "title": "Tribute to T-Bone - The Weight (Intro) (Live From Daryl's House)",
+          "playlist_index": 13
+        },
+        {
+          "id": "eeSbUKU5aYU",
+          "title": "Tribute to T-Bone Wolk - The Weight (Live From Daryl's House)",
+          "playlist_index": 14
+        },
+        {
+          "id": "6ruJ0w5yOps",
+          "title": "Tribute to T-Bone - End (Live From Daryl's House)",
+          "playlist_index": 15
+        }
+      ]
+    },
+    {
+      "number": 27,
+      "title": "#27 - Daryl Hall hosts Eli \"Paperboy\" Reed on Live From Daryl's House",
+      "url": "https://www.youtube.com/playlist?list=PLINSQGXREtvdj1ypoRkQgXKDOL7sbK7uJ",
+      "clips": [
+        {
+          "id": "x1NFwRxwmCE",
+          "title": "Daryl Hall & Eli \"Paperboy\" Reed - Pick Up The Pieces (Live From Daryl's House)",
+          "playlist_index": 1
+        },
+        {
+          "id": "SCzQq0RjcXc",
+          "title": "Daryl Hall & Eli \"Paperboy\" Reed - I Need Your Lovin' (Live From Daryl's House)",
+          "playlist_index": 2
+        },
+        {
+          "id": "B9U2crPBZso",
+          "title": "Daryl Hall & Eli \"Paperboy\" Reed - I Found You Out (Live From Daryl's House)",
+          "playlist_index": 3
+        },
+        {
+          "id": "Vl6gZwnM4hw",
+          "title": "Daryl Hall & Eli \"Paperboy\" Reed - Pick A Number (Live From Daryl's House)",
+          "playlist_index": 4
+        },
+        {
+          "id": "b1XxSStTXfw",
+          "title": "Daryl Hall & Eli \"Paperboy\" Reed - Take My Love With You (Live From Daryl's House)",
+          "playlist_index": 5
+        },
+        {
+          "id": "KLsEdIOHdM8",
+          "title": "Daryl Hall & Eli \"Paperboy\" Reed - Storm Warning (Live From Daryl's House)",
+          "playlist_index": 6
+        },
+        {
+          "id": "7hlLxQi8fqU",
+          "title": "Daryl Hall & Eli \"Paperboy\" Reed - It's Uncanny (Live From Daryl's House)",
+          "playlist_index": 7
+        },
+        {
+          "id": "IaYy1WJqZw0",
+          "title": "Daryl Hall & Eli \"Paperboy\" Reed - Starting All Over Again (Live From Daryl's House)",
+          "playlist_index": 8
+        },
+        {
+          "id": "AaLpW8ulSHQ",
+          "title": "Daryl Hall & Eli \"Paperboy\" Reed - I Found A Love (Live From Daryl's House)",
+          "playlist_index": 9
+        },
+        {
+          "id": "C4XWyZ3O84c",
+          "title": "Daryl Hall & Eli Paperboy Reed - You Can Run On (Live From Daryl's House)",
+          "playlist_index": 10
+        }
+      ]
+    },
+    {
+      "number": 26,
+      "title": "#26 - Daryl Hall hosts Jimmy Wayne on Live From Daryl's House",
+      "url": "https://www.youtube.com/playlist?list=PLINSQGXREtveF-xh0wO8eIBknD0e2eZoO",
+      "clips": [
+        {
+          "id": "8OwHUvTK4f4",
+          "title": "Daryl Hall & Jimmy Wayne - I Didn't Come Here To Lose (Live From Daryl's House)",
+          "playlist_index": 1
+        },
+        {
+          "id": "uadYC1H0RoY",
+          "title": "Daryl Hall & Jimmy Wayne - Kerosene Kid (Live From Daryl's House)",
+          "playlist_index": 2
+        },
+        {
+          "id": "KdRsAELYaiw",
+          "title": "Daryl Hall & Jimmy Wayne - Do You Believe Me Now (Live From Daryl's House)",
+          "playlist_index": 3
+        },
+        {
+          "id": "e0Ji8iJNThM",
+          "title": "Daryl Hall & Jimmy Wayne - I'll Never Leave You (Live From Daryl's House)",
+          "playlist_index": 4
+        },
+        {
+          "id": "J7MRduPW928",
+          "title": "Daryl Hall & Jimmy Wayne - Sara Smile",
+          "playlist_index": 5
+        },
+        {
+          "id": "ek5np75DVrY",
+          "title": "Daryl Hall & Jimmy Wayne - Someone Like You (Live From Daryl's House)",
+          "playlist_index": 6
+        },
+        {
+          "id": "XCe28cXjmWQ",
+          "title": "Daryl Hall & Jimmy Wayne - Knock On Wood (Live From Daryl's House)",
+          "playlist_index": 7
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "title": "#24 - Daryl Hall hosts Diane Birch on Live From Daryl's House",
+      "url": "https://www.youtube.com/playlist?list=PLINSQGXREtveKou9G_zF_acHO6KhSF1nt",
+      "clips": [
+        {
+          "id": "Rw3cJO8rkrQ",
+          "title": "Daryl Hall & Diane Birch - Don't Wait Up (Live From Daryl's House)",
+          "playlist_index": 1
+        },
+        {
+          "id": "NKSuaHq-toA",
+          "title": "Daryl Hall & Diane Birch - Nothing But A Miracle (Live From Daryl's House)",
+          "playlist_index": 2
+        },
+        {
+          "id": "Q5oQqDS_d88",
+          "title": "Daryl Hall & Diane Birch - Fire Escape (Live From Daryl's House)",
+          "playlist_index": 3
+        },
+        {
+          "id": "8Mkkt6t4ssc",
+          "title": "Daryl Hall & Diane Birch - Life's Too Short (Live From Daryl's House)",
+          "playlist_index": 4
+        },
+        {
+          "id": "TLDYvAq3ZWk",
+          "title": "Daryl Hall & Diane Birch - Fools (Live From Daryl's House)",
+          "playlist_index": 5
+        },
+        {
+          "id": "Di9ntbrRUZA",
+          "title": "Daryl Hall & Diane Birch - Fall In Philadelphia (Live From Daryl's House)",
+          "playlist_index": 6
+        },
+        {
+          "id": "FPYJUxTOy7s",
+          "title": "Daryl Hall & Diane Birch - Daydreaming (Live From Daryl's House)",
+          "playlist_index": 7
+        },
+        {
+          "id": "PxJnypWj26w",
+          "title": "Daryl Hall & Diane Birch - End (Live From Daryl's House)",
+          "playlist_index": 8
+        }
+      ]
+    },
+    {
+      "number": 28,
+      "title": "#28 - Daryl Hall hosts Toots & The Maytals on Live From Daryl's House",
+      "url": "https://www.youtube.com/playlist?list=PLINSQGXREtvfsNIhj9QGMcSyRvbGO_NQc",
+      "clips": [
+        {
+          "id": "hONcYL6Excg",
+          "title": "Daryl Hall & Toots and The Maytals - Time Tough (Live From Daryl's House)",
+          "playlist_index": 1
+        },
+        {
+          "id": "p6g3ODWr6gg",
+          "title": "Daryl Hall & Toots and The Maytals - Funky Kingston (Live From Daryl's House)",
+          "playlist_index": 2
+        },
+        {
+          "id": "UGt9Jg8Hrok",
+          "title": "Daryl Hall & Toots and The Maytals - Sweet and Dandy (Live From Daryl's House)",
+          "playlist_index": 3
+        },
+        {
+          "id": "GdKyVQHCtXk",
+          "title": "Daryl Hall & Toots and the Maytals - Reggae Got Soul (Live From Daryl's House)",
+          "playlist_index": 4
+        },
+        {
+          "id": "LrahtV9e0W4",
+          "title": "Daryl Hall & Toots and the Maytals - 54-46 That's My Number (Live From Daryl's House)",
+          "playlist_index": 5
+        },
+        {
+          "id": "6TRaXyfrkxI",
+          "title": "Daryl Hall & Toots and the Maytals - Monkey Man (Live From Daryl's House)",
+          "playlist_index": 6
+        },
+        {
+          "id": "Lr-TrlzUvF8",
+          "title": "Daryl Hall & Toots and the Maytals - You Make My Dreams (Live From Daryl's House)",
+          "playlist_index": 7
+        },
+        {
+          "id": "vEocv-IxqBk",
+          "title": "Daryl Hall & Toots and the Maytals - End (Live From Daryl's House)",
+          "playlist_index": 8
+        }
+      ]
+    }
+  ],
+  "local_filenames": [
+    "Daryl Hall & Chromeo - Adult Education (Live From Daryl's House).mkv",
+    "Daryl Hall & Chromeo - End (Live From Daryl's House).mkv",
+    "Daryl Hall & Chromeo - Family Man (Live From Daryl's House).mkv",
+    "Daryl Hall & Chromeo - Fantasy Is Reality (Live From Daryl's House).mkv",
+    "Daryl Hall & Chromeo - I Can't Go For That (No Can Do) (Live From Daryl's House).mkv",
+    "Daryl Hall & Chromeo - Intro (Live From Daryl's House).mkv",
+    "Daryl Hall & Chromeo - Lowdown (Live From Daryl's House).mkv",
+    "Daryl Hall & Chromeo - Method Of Modern Love (Live From Daryl's House).mkv",
+    "Daryl Hall & Chromeo - Tenderoni (Live From Daryl's House).mkv",
+    "Daryl Hall & Chromeo - Waiting For You (Live From Daryl's House).mkv",
+    "Daryl Hall & Company Of Thieves - Around The Block (Live From Daryl's House).mkv",
+    "Daryl Hall & Company Of Thieves - Even in The Dark (Live From Daryl's House).mkv",
+    "Daryl Hall & Company Of Thieves - Everytime You Go Away (Live From Daryl's House).mkv",
+    "Daryl Hall & Company Of Thieves - Past The Sleep (Live From Daryl's House).mkv",
+    "Daryl Hall & Company Of Thieves - Piece of My Heart (Live From Daryl's House).mkv",
+    "Daryl Hall & Company Of Thieves - Pressure (Live From Daryl's House).mkv",
+    "Daryl Hall & Company Of Thieves - Starting All Over Again (Live From Daryl's House).mkv",
+    "Daryl Hall & Company Of Thieves - Time of the Season (Live From Daryl's House).mkv",
+    "Daryl Hall & Diane Birch - Daydreaming (Intro).mkv",
+    "Daryl Hall & Diane Birch - Daydreaming (Live From Daryl's House).mkv",
+    "Daryl Hall & Diane Birch - Don't Wait Up (Live From Daryl's House).mkv",
+    "Daryl Hall & Diane Birch - End (Live From Daryl's House).mkv",
+    "Daryl Hall & Diane Birch - Fall In Philadelphia (Live From Daryl's House).mkv",
+    "Daryl Hall & Diane Birch - Fire Escape (Live From Daryl's House).mkv",
+    "Daryl Hall & Diane Birch - Fools (Live From Daryl's House).mkv",
+    "Daryl Hall & Diane Birch - Life's Too Short (Live From Daryl's House).mkv",
+    "Daryl Hall & Diane Birch - Nothing But A Miracle (Live From Daryl's House).mkv",
+    "Daryl Hall & Eli ＂Paperboy' Reed - Pick A Number (Intro).mkv",
+    "Daryl Hall & Eli ＂Paperboy＂ Reed - End (Live From Daryl's House).mkv",
+    "Daryl Hall & Eli ＂Paperboy＂ Reed - I Found A Love (Live From Daryl's House).mkv",
+    "Daryl Hall & Eli ＂Paperboy＂ Reed - I Found You Out (Live From Daryl's House).mkv",
+    "Daryl Hall & Eli ＂Paperboy＂ Reed - I Need Your Lovin' (Live From Daryl's House).mkv",
+    "Daryl Hall & Eli ＂Paperboy＂ Reed - Intro (Live From Daryl's House).mkv",
+    "Daryl Hall & Eli ＂Paperboy＂ Reed - Pick A Number (Live From Daryl's House).mkv",
+    "Daryl Hall & Eli ＂Paperboy＂ Reed - Pick Up The Pieces (Live From Daryl's House).mkv",
+    "Daryl Hall & Eli ＂Paperboy＂ Reed - Storm Warning (Live From Daryl's House).mkv",
+    "Daryl Hall & Eli ＂Paperboy＂ Reed - Take My Love With You (Intro) (Live From Daryl's House).mkv",
+    "Daryl Hall & Eli ＂Paperboy＂ Reed - Take My Love With You (Live From Daryl's House).mkv",
+    "Daryl Hall & Eli ＂Paperboy＂ Reed - Uncanny (Intro) (Live From Daryl's House).mkv",
+    "Daryl Hall & Eli ＂Paperboy＂ Reed - Uncanny (Live From Daryl's House).mkv",
+    "Daryl Hall & Eli ＂Paperboy＂ Reed - You Can Run On (Intro) (Live From Daryl's House).mkv",
+    "Daryl Hall & Eli ＂Paperboy＂ Reed - You Can Run On (Live From Daryl's House).mkv",
+    "Daryl Hall & Eric Hutchinson - End (Live From Daryl's House).mkv",
+    "Daryl Hall & Eric Hutchinson - Food Chain (Live From Daryl's House).mkv",
+    "Daryl Hall & Eric Hutchinson - I Don't Wanna Lose You (Live From Daryl's House).mkv",
+    "Daryl Hall & Eric Hutchinson - Intro (Live From Daryl's House).mkv",
+    "Daryl Hall & Eric Hutchinson - Ok, It's Alright With Me (Live From Daryl's House).mkv",
+    "Daryl Hall & Eric Hutchinson - Private Eyes (Live From Daryl's House).mkv",
+    "Daryl Hall & Eric Hutchinson - Rock and Roll (Live From Daryl's House).mkv",
+    "Daryl Hall & Eric Hutchinson - Tell Me Something Good (Live From Daryl's House).mkv",
+    "Daryl Hall & Eric Hutchinson - Tracks Of My Tears (Live From Daryl's House).mkv",
+    "Daryl Hall & Eric Hutchinson - You Don't Have To Believe Me (Live From Daryl's House).mkv",
+    "Daryl Hall & Finger Eleven - Ain't No Sunshine (Live From Daryl's House).mkv",
+    "Daryl Hall & Finger Eleven - Art Of Heartbreak (Live From Daryl's House).mkv",
+    "Daryl Hall & Finger Eleven - End (Live From Daryl's House).mkv",
+    "Daryl Hall & Finger Eleven - Falling On (Live From Daryl's House).mkv",
+    "Daryl Hall & Finger Eleven - Family Man (Live From Daryl's House).mkv",
+    "Daryl Hall & Finger Eleven - I'll Keep Your Memory Vague (Live From Daryl's House).mkv",
+    "Daryl Hall & Finger Eleven - Intro (Live From Daryl's House).mkv",
+    "Daryl Hall & Finger Eleven - Paralyzer (Live From Daryl's House).mkv",
+    "Daryl Hall & Finger Eleven - Romeo Is Bleeding (Live From Daryl's House).mkv",
+    "Daryl Hall & Finger Eleven - Talking To The Walls (Live From Daryl's House).mkv",
+    "Daryl Hall & Fitz and the Tantrums - Breakin' The Chains Of Love (Live From Daryl's House).mkv",
+    "Daryl Hall & Fitz and the Tantrums - Dear Mr. President (Live From Daryl's House).mkv",
+    "Daryl Hall & Fitz and the Tantrums - End (Live From Daryl's House).mkv",
+    "Daryl Hall & Fitz and the Tantrums - Girl, I Love You (Live From Daryl's House).mkv",
+    "Daryl Hall & Fitz and the Tantrums - Intro (Live From Daryl's House).mkv",
+    "Daryl Hall & Fitz and the Tantrums - MoneyGrabber (Live From Daryl's House).mkv",
+    "Daryl Hall & Fitz and the Tantrums - Perkiomen (Live From Daryl's House).mkv",
+    "Daryl Hall & Fitz and the Tantrums - Pickin' Up The Pieces (Live From Daryl's House).mkv",
+    "Daryl Hall & Fitz and the Tantrums - Sara Smile (Live From Daryl's House).mkv",
+    "Daryl Hall & Guster - Bad Bad World (Live From Daryl's House).mkv",
+    "Daryl Hall & Jimmy Wayne - Do You Believe Me Now (Live From Daryl's House).mkv",
+    "Daryl Hall & Jimmy Wayne - I Didn't Come Here To Lose (Live From Daryl's House).mkv",
+    "Daryl Hall & Jimmy Wayne - I'll Never Leave You (Live From Daryl's House).mkv",
+    "Daryl Hall & Jimmy Wayne - Kerosene Kid (Intro).mkv",
+    "Daryl Hall & Jimmy Wayne - Kerosene Kid (Live From Daryl's House).mkv",
+    "Daryl Hall & Jimmy Wayne - Knock On Wood (Live From Daryl's House).mkv",
+    "Daryl Hall & Jimmy Wayne - Sara Smile.mkv",
+    "Daryl Hall & Jimmy Wayne - Someone Like You (Live From Daryl's House).mkv",
+    "Daryl Hall & Jose Feliciano - Feliz Navidad (Live From Daryl's House).mkv",
+    "Daryl Hall & Jose Feliciano - Fire and Rain (Live From Daryl's House).mkv",
+    "Daryl Hall & Jose Feliciano - Intro (Live From Daryl's House).mkv",
+    "Daryl Hall & KT Tunstall - Black Horse and The Cherry Tree (Live From Daryl's House).mkv",
+    "Daryl Hall & KT Tunstall - End (Live From Daryl's House).mkv",
+    "Daryl Hall & KT Tunstall - Getaway Car (Live From Daryl's House).mkv",
+    "Daryl Hall & KT Tunstall - I'll Be Around (Live From Daryl's House).mkv",
+    "Daryl Hall & KT Tunstall - If Only (Live From Daryl's House).mkv",
+    "Daryl Hall & KT Tunstall - Intro (Live From Daryl's House).mkv",
+    "Daryl Hall & KT Tunstall - Kiss On My List (Live From Daryl's House).mkv",
+    "Daryl Hall & KT Tunstall - One On One (Live From Daryl's House).mkv",
+    "Daryl Hall & KT Tunstall - Out Of Touch (Live From Daryl's House).mkv",
+    "Daryl Hall & KT Tunstall - Something To Talk About (Live From Daryl's House).mkv",
+    "Daryl Hall & Kevin Rudolf - Beast of Burden (Live From Daryl's House).mkv",
+    "Daryl Hall & Kevin Rudolf - End (Live From Daryl's House).mkv",
+    "Daryl Hall & Kevin Rudolf - Everyday Will Be Like A Holiday (Live From Daryl's House).mkv",
+    "Daryl Hall & Kevin Rudolf - I Song (Live From Daryl's House).mkv",
+    "Daryl Hall & Kevin Rudolf - In The City (Live From Daryl's House).mkv",
+    "Daryl Hall & Kevin Rudolf - Intro (Live From Daryl's House).mkv",
+    "Daryl Hall & Kevin Rudolf - Let It Rock (Live From Daryl's House).mkv",
+    "Daryl Hall & Kevin Rudolf - She's Gone (Live From Daryl's House).mkv",
+    "Daryl Hall & Kevin Rudolf - Welcome To The World (Live From Daryl's House).mkv",
+    "Daryl Hall & Kevin Rudolf - What's Going On (Live From Daryl's House).mkv",
+    "Daryl Hall & Matt Nathanson - All We Are (Live From Daryl's House).mkv",
+    "Daryl Hall & Matt Nathanson - Car Crash (Live From Daryl's House).mkv",
+    "Daryl Hall & Matt Nathanson - Come On Get Higher (Live From Daryl's House).mkv",
+    "Daryl Hall & Matt Nathanson - Did It In A Minute (Live From Daryl's House).mkv",
+    "Daryl Hall & Matt Nathanson - One On One (Live From Daryl's House).mkv",
+    "Daryl Hall & Matt Nathanson - Still (Live From Daryl's House).mkv",
+    "Daryl Hall & Matt Nathanson - The Weight (Live From Daryl's House).mkv",
+    "Daryl Hall & Matt Nathanson - Wishing Well (Live From Daryl's House).mkv",
+    "Daryl Hall & Monte Montgomery - Do It For Love (Live From Daryl's House).mkv",
+    "Daryl Hall & Monte Montgomery - Dreamtime (Live From Daryl's House).mkv",
+    "Daryl Hall & Monte Montgomery - Loved You Forever (Live From Daryl's House).mkv",
+    "Daryl Hall & Monte Montgomery - Midlife Matinee (Live From Daryl's House).mkv",
+    "Daryl Hall & Monte Montgomery - Northstar (Live From Daryl's House).mkv",
+    "Daryl Hall & Monte Montgomery - Sara Smile (Live From Daryl's House).mkv",
+    "Daryl Hall & Monte Montgomery - Sitting On The Dock Of The Bay (Live From Daryl's House).mkv",
+    "Daryl Hall & Monte Montgomery - That's The Way I Feel About You (Live From Daryl's House).mkv",
+    "Daryl Hall & Neon Trees - 1983 (Live From Daryl's House).mkv",
+    "Daryl Hall & Neon Trees - Animal (Live From Daryl's House).mkv",
+    "Daryl Hall & Neon Trees - Dreams (Fleetwood Mac) (Live From Daryl's House).mkv",
+    "Daryl Hall & Neon Trees - Intro (Live From Daryl's House).mkv",
+    "Daryl Hall & Neon Trees - Love and Affection (Live From Daryl's House).mkv",
+    "Daryl Hall & Nick Lowe - Cruel To Be Kind (Live From Daryl's House).mkv",
+    "Daryl Hall & Nick Lowe - End (Live From Daryl's House).mkv",
+    "Daryl Hall & Nick Lowe - I Live On A Battlefield (Live From Daryl's House).mkv",
+    "Daryl Hall & Nick Lowe - Intro (Live From Daryl's House).mkv",
+    "Daryl Hall & Nick Lowe - Perkiomen (Live From Daryl's House).mkv",
+    "Daryl Hall & Nick Lowe - Rome Wasn't Built In A Day (Live From Daryl's House).mkv",
+    "Daryl Hall & Nick Lowe - Shelley My Love (Live From Daryl's House).mkv",
+    "Daryl Hall & Nick Lowe - Time I Took A Holiday (Live From Daryl's House).mkv",
+    "Daryl Hall & Parachute - All That I Am (Live From Daryl's House).mkv",
+    "Daryl Hall & Parachute - It's A Laugh (Live From Daryl's House).mkv",
+    "Daryl Hall & Parachute - Say It Isn't So (Live From Daryl's House).mkv",
+    "Daryl Hall & Parachute - She (for Liz) (Live From Daryl's House).mkv",
+    "Daryl Hall & Parachute - She Is Love (Live From Daryl's House).mkv",
+    "Daryl Hall & Parachute - Shotgun (Live From Daryl's House).mkv",
+    "Daryl Hall & Parachute - Under Control (Live From Daryl's House).mkv",
+    "Daryl Hall & Patrick Stump - End (Live From Daryl's House).mkv",
+    "Daryl Hall & Patrick Stump - Guessing Games (Live From Daryl's House).mkv",
+    "Daryl Hall & Patrick Stump - I Don't Care (Live From Daryl's House).mkv",
+    "Daryl Hall & Patrick Stump - Out of Touch (Live From Daryl's House).mkv",
+    "Daryl Hall & Patrick Stump - Sophomore Slump or Comeback of the Year (Live From Daryl's House).mkv",
+    "Daryl Hall & Patrick Stump - Sugar, We're Going Down (Live From Daryl's House).mkv",
+    "Daryl Hall & Patrick Stump - What A Catch, Donnie (Live From Daryl's House).mkv",
+    "Daryl Hall & Patrick Stump - What Becomes Of The Brokenhearted (Live From Daryl's House).mkv",
+    "Daryl Hall & Plain White T's - 1, 2, 3, 4 (Live From Daryl's House).mkv",
+    "Daryl Hall & Plain White T's - End (Live From Daryl's House).mkv",
+    "Daryl Hall & Plain White T's - Hey There Delilah (Live From Daryl's House).mkv",
+    "Daryl Hall & Plain White T's - Is She Really Going Out With Him (Live From Daryl's House).mkv",
+    "Daryl Hall & Plain White T's - Rainy Day (Live From Daryl's House).mkv",
+    "Daryl Hall & Plain White T's - Starting All Over Again (Live From Daryl's House).mkv",
+    "Daryl Hall & Plain White T's - Sunlight (Live From Daryl's House).mkv",
+    "Daryl Hall & Plain White Ts - So Close (Live From Daryl's House).mkv",
+    "Daryl Hall & Rob Thomas (Matchbox Twenty) - 3AM (Live From Daryl's House).mkv",
+    "Daryl Hall & Rob Thomas (Matchbox Twenty) - Disease (Live From Daryl's House).mkv",
+    "Daryl Hall & Rob Thomas (Matchbox Twenty) - Ever The Same (Live From Daryl's House).mkv",
+    "Daryl Hall & Rob Thomas (Matchbox Twenty) - Heard It Through The Grapevine (Live From Daryl's House).mkv",
+    "Daryl Hall & Rob Thomas (Matchbox Twenty) - Intro (Live From Daryl's House).mkv",
+    "Daryl Hall & Rob Thomas (Matchbox Twenty) - Kiss On My List (Live From Daryl's House).mkv",
+    "Daryl Hall & Rob Thomas (Matchbox Twenty) - She's Gone (Live From Daryl's House).mkv",
+    "Daryl Hall & Rob Thomas (Matchbox Twenty) - Someday (Live From Daryl's House).mkv",
+    "Daryl Hall & Sharon Jones - 100 Days, 100 Nights (Live From Daryl's House).mkv",
+    "Daryl Hall & Sharon Jones - Do What You Want, Be What You Are (Live From Daryl's House).mkv",
+    "Daryl Hall & Sharon Jones - End (Live From Daryl's House).mkv",
+    "Daryl Hall & Sharon Jones - Got A Thing On My Mind (Live From Daryl's House).mkv",
+    "Daryl Hall & Sharon Jones - Hot Fun In The Summertime (Live From Daryl's House).mkv",
+    "Daryl Hall & Sharon Jones - I Learned The Hard Way (Live From Daryl's House).mkv",
+    "Daryl Hall & Sharon Jones - Intro (Live From Daryl's House).mkv",
+    "Daryl Hall & Sharon Jones - Tell Me (Live From Daryl's House).mkv",
+    "Daryl Hall & Sharon Jones - Uncanny (Live From Daryl's House).mkv",
+    "Daryl Hall & Smokey Robinson - Being With You (Live From Daryl's House).mkv",
+    "Daryl Hall & Smokey Robinson - Don't Know Why (Live From Daryl's House).mkv",
+    "Daryl Hall & Smokey Robinson - Girlfriend (Live From Daryl's House).mkv",
+    "Daryl Hall & Smokey Robinson - Going To A Go Go (Live From Daryl's House).mkv",
+    "Daryl Hall & Smokey Robinson - I Can't Go For That (No Can Do) (Live From Daryl's House).mkv",
+    "Daryl Hall & Smokey Robinson - I've Been Good To You (Live From Daryl's House).mkv",
+    "Daryl Hall & Smokey Robinson - Intro (Live From Daryl's House).mkv",
+    "Daryl Hall & Smokey Robinson - Sara Smile ⧸ Ohh Baby Baby (Intro).mkv",
+    "Daryl Hall & Smokey Robinson - Sara Smile ⧸ Ooh Baby Baby (Live From Daryl's House).mkv",
+    "Daryl Hall & Smokey Robinson - Tears Of A Clown (Live From Daryl's House).mkv",
+    "Daryl Hall & The Bacon Brothers - Above The Clouds (Live From Daryl's House).mkv",
+    "Daryl Hall & The Bacon Brothers - Bunch Of Words (Live From Daryl's House).mkv",
+    "Daryl Hall & The Bacon Brothers - End (Live From Daryl's House).mkv",
+    "Daryl Hall & The Bacon Brothers - Go My Way (The iPod Song) (Live From Daryl's House).mkv",
+    "Daryl Hall & The Bacon Brothers - Intro (Live From Daryl's House).mkv",
+    "Daryl Hall & The Bacon Brothers - It's All Over Now (Live From Daryl's House).mkv",
+    "Daryl Hall & The Bacon Brothers - New Year's Day (Live From Daryl's House).mkv",
+    "Daryl Hall & The Bacon Brothers - Tell Me What I Have To Do (Live From Daryl's House).mkv",
+    "Daryl Hall & The Bacon Brothers - The Last Time (Live From Daryl's House).mkv",
+    "Daryl Hall & The Bacon Brothers - When The Morning Comes (Live From Daryl's House).mkv",
+    "Daryl Hall & The Doors - Borderline (Live From Daryl's House).mkv",
+    "Daryl Hall & The Doors - Break On Through (Live From Daryl's House).mkv",
+    "Daryl Hall & The Doors - Family Affair (Live From Daryl's House).mkv",
+    "Daryl Hall & The Doors - Kiss On My List (Live From Daryl's House).mkv",
+    "Daryl Hall & The Doors - People Are Strange (Live From Daryl's House).mkv",
+    "Daryl Hall & The Doors - Roadhouse Blues (Live From Daryl's House).mkv",
+    "Daryl Hall & The Doors - The Crystal Ship (Live From Daryl's House).mkv",
+    "Daryl Hall & Todd Rundgren - Better Watch Your Back (Live From Daryl's House).mkv",
+    "Daryl Hall & Todd Rundgren - Can We Still Be Friends (Live From Daryl's House).mkv",
+    "Daryl Hall & Todd Rundgren - End (Live From Daryl's House).mkv",
+    "Daryl Hall & Todd Rundgren - Intro (Live From Daryl's House).mkv",
+    "Daryl Hall & Todd Rundgren - Sometimes I Don't Know What To Feel (Live From Daryl's House).mkv",
+    "Daryl Hall & Todd Rundgren - The Want Of A Nail (Live From Daryl's House).mkv",
+    "Daryl Hall & Toots & The Maytals - Reggae Got Soul (Intro).mkv",
+    "Daryl Hall & Toots and The Maytals - Funky Kingston (Live From Daryl's House).mkv",
+    "Daryl Hall & Toots and The Maytals - Sweet and Dandy (Live From Daryl's House).mkv",
+    "Daryl Hall & Toots and The Maytals - Time Tough (Live From Daryl's House).mkv",
+    "Daryl Hall & Toots and the Maytals - 54-46 That's My Number (Live From Daryl's House).mkv",
+    "Daryl Hall & Toots and the Maytals - End (Live From Daryl's House).mkv",
+    "Daryl Hall & Toots and the Maytals - Monkey Man (Live From Daryl's House).mkv",
+    "Daryl Hall & Toots and the Maytals - Reggae Got Soul (Live From Daryl's House).mkv",
+    "Daryl Hall & Toots and the Maytals - You Make My Dreams (Live From Daryl's House).mkv",
+    "Daryl Hall & Train - Cab (Live From Daryl's House).mkv",
+    "Daryl Hall & Train - Hey, Soul Sister (Live From Daryl's House).mkv",
+    "Daryl Hall & Train - I'm Not Waiting In Line (Live From Daryl's House).mkv",
+    "Daryl Hall & Train - If It's Love (Live From Daryl's House).mkv",
+    "Daryl Hall & Train - Intro (Live From Daryl's House).mkv",
+    "Daryl Hall & Train - Papa Was A Rolling Stone (Live From Daryl's House).mkv",
+    "Daryl Hall & Train - Say It Isn't So (Live From Daryl's House).mkv",
+    "Daryl Hall & Train - Wait For Me (Live From Daryl's House).mkv",
+    "Daryl Hall & Travis McCoy (Gym Class Heroes) - Can't Stop Dreaming (Live From Daryl's House).mkv",
+    "Daryl Hall & Travis McCoy (Gym Class Heroes) - End (Live From Daryl's House).mkv",
+    "Daryl Hall & Travis McCoy (Gym Class Heroes) - Everytime You Go Away (Live From Daryl's House).mkv",
+    "Daryl Hall & Travis McCoy (Gym Class Heroes) - Intro (Live From Daryl's House).mkv",
+    "Daryl Hall & Travis McCoy (Gym Class Heroes) - The Queen & I (Live From Daryl's House).mkv",
+    "Daryl Hall & Travis McCoy (Gym Class Heroes) - Uncanny (Live From Daryl's House).mkv",
+    "Daryl Hall & Travis McCoy (Gym Class Heroes) - Valentine (Live From Daryl's House).mkv",
+    "Daryl Hall & Travis McCoy (Gym Class Heroes) - Wake Up Everybody (Live From Daryl's House).mkv",
+    "Daryl Hall & Travis McCoy - Be Thankful For What You Got (Live From Daryl's House).mkv",
+    "Daryl Hall & Travis McCoy - Don't Let Me Be Misunderstood (Live From Daryl's House).mkv",
+    "Daryl Hall - Cab Driver (Live From Daryl's House - The Debut Episode).mkv",
+    "Daryl Hall - Cab Driver (Live at SXSW).mkv",
+    "Daryl Hall - Dreamtime (Live From Daryl's House - The Debut Episode).mkv",
+    "Daryl Hall - Everything Your Heart Desires (Live From Daryl's House - The Debut Episode).mkv",
+    "Daryl Hall - Everything Your Heart Desires (Live at SXSW).mkv",
+    "Daryl Hall - Foolish Pride (Live From Daryl's House - The Debut Episode).mkv",
+    "Daryl Hall - I Can't Stop Dreaming (Live at SXSW).mkv",
+    "Daryl Hall - I'm In A Philly Mood (Live From Daryl's House - The Debut Episode).mkv",
+    "Daryl Hall - It's A Laugh (Live From Daryl's House - The Debut Episode).mkv",
+    "Daryl Hall - It's Uncanny (Live at SXSW).mkv",
+    "Daryl Hall - Kiss On My List (Live From Daryl's House).mkv",
+    "Daryl Hall - Maneater (Live From Daryl's House).mkv",
+    "Daryl Hall - New Year's Eve Special - Eli 'Paperboy' Reed - Pick A Number (Live From Daryl's House).mkv",
+    "Daryl Hall - New Year's Eve Special - Todd Rundgren - The Want Of A Nail (Live From Daryl's House).mkv",
+    "Daryl Hall - Rich Girl (Live From Daryl's House).mkv",
+    "Daryl Hall - Sara Smile (Live From Daryl's House - The Debut Episode).mkv",
+    "Daryl Hall - Somebody Like You (Live From Daryl's House).mkv",
+    "Daryl Hall - Somebody Like You (Live at SXSW).mkv",
+    "Daryl Hall - Someone Else's Kids (Live From Daryl's House - The Debut Episode).mkv",
+    "Daryl Hall - Someone Else's Kids (Live From Daryl's House).mkv",
+    "Daryl Hall - Stop Loving Me, Stop Loving You (Live From Daryl's House).mkv",
+    "Daryl Hall - What's Gonna Happen To Us (Live From Daryl's House).mkv",
+    "Daryl Hall - You Make My Dreams (Live From Daryl's House).mkv",
+    "Daryl Hall - You Make My Dreams (Live at SXSW).mkv",
+    "Daryl Hall Live in Jamaica - Caribbean Queen (Intro).mkv",
+    "Daryl Hall Live in Jamaica - Caribbean Queen (Live From Daryl's House Special).mkv",
+    "Daryl Hall Live in Jamaica - End (Live From Daryl's House Special).mkv",
+    "Daryl Hall Live in Jamaica - Las Vegas Turnaround (Intro).mkv",
+    "Daryl Hall Live in Jamaica - Las Vegas Turnaround (Live From Daryl's House Special).mkv",
+    "Daryl Hall Live in Jamaica - Love TKO (Intro).mkv",
+    "Daryl Hall Live in Jamaica - Love TKO (Live From Daryl's House Special).mkv",
+    "Daryl Hall Live in Jamaica - Love Train (Live From Daryl's House Special).mkv",
+    "Daryl Hall Live in Jamaica - Maneater (Intro).mkv",
+    "Daryl Hall Live in Jamaica - Maneater (Live From Daryl's House Special).mkv",
+    "Daryl Hall Live in Jamaica - One On One (Intro).mkv",
+    "Daryl Hall Live in Jamaica - One On One (Live From Daryl's House Special).mkv",
+    "Daryl Hall Live in Jamaica - Say It Isn't So (Intro).mkv",
+    "Daryl Hall Live in Jamaica - Say It Isn't So (Live From Daryl's House Special).mkv",
+    "Daryl Hall Retrospective 2 - End.mkv",
+    "Daryl Hall, Mutlu & Chuck Prophet - Foolish Pride (Live From Daryl's House).mkv",
+    "Daryl Hall, Mutlu & Chuck Prophet - Living It (Live From Daryl's House).mkv",
+    "Daryl Hall, Mutlu & Chuck Prophet - Maneater (Live From Daryl's House).mkv",
+    "Daryl Hall, Mutlu & Chuck Prophet - See What It Brings (Live From Daryl's House).mkv",
+    "Daryl Hall, Mutlu & Chuck Prophet - Soul Sister (Live From Daryl's House).mkv",
+    "Daryl Hall, Mutlu & Chuck Prophet - Summertime Thing (Live From Daryl's House).mkv",
+    "Daryl Hall, Mutlu & Chuck Prophet - You Did (Live From Daryl's House).mkv",
+    "Daryl Hall, Mutlu & Chuck Prophet - You Make My Dreams (Live From Daryl's House).mkv",
+    "Fitz & The Tantrums - Breakin' The Chains of Love (Live From Daryl's House - New Year's Eve Special).mkv",
+    "Toots & The Maytals - Reggae Got Soul (Live From Daryl's House - New Year's Eve Special).mkv",
+    "Tribute to T-Bone - Change Of Season (Intro) (Live From Daryl's House).mkv",
+    "Tribute to T-Bone - I Miss You (Intro) (Live From Daryl's House).mkv",
+    "Tribute to T-Bone - I Miss You (Intro).mkv",
+    "Tribute to T-Bone - I Miss You (Live From Daryl's House).mkv",
+    "Tribute to T-Bone - If I Don't Have You (Live From Daryl's House).mkv",
+    "Tribute to T-Bone - In The Night (Intro) (Live From Daryl's House).mkv",
+    "Tribute to T-Bone - In The Night (Live From Daryl's House).mkv",
+    "Tribute to T-Bone - Please Send Me Someone (Intro) (Live From Daryl's House).mkv",
+    "Tribute to T-Bone - Please Send Me Someone (Live From Daryl's House).mkv"
+  ]
+}
