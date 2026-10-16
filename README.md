@@ -10,6 +10,30 @@ Live from Daryl's House - E07 - Featured Artist.mkv
 
 The episode number and featured artist/special name come from the playlist title, including the channel's `#10 - Daryl Hall hosts Chromeo…` format, never an artist-name guess from a local clip. E32 is named `Retrospective 2`, and E39 is named `New Years Eve Special`. Numbers 1–91 are in scope. Range collections such as `Episodes 1 - 10` are excluded. Windows-invalid characters in artist names are replaced with ` - `.
 
+## Episode 1: MKVToolNix test without re-encoding
+
+This is deliberately limited to E01. Keep the existing `work/plan.json`; do not rescan or download videos again. Install MKVToolNix from <https://mkvtoolnix.download/downloads.html#windows> if needed, or use:
+
+```powershell
+winget install --id MoritzBunkus.MKVToolNix --exact
+```
+
+Copy **e01_mkvmerge.py** and **Test-E01-MKVToolNix.bat** from the new ZIP into your existing app folder alongside mergegoblin.py and work. Stop any old conversion job before starting the test. Double-click **Test-E01-MKVToolNix.bat**. It looks for MKVToolNix in its standard installation folder, on PATH, or in this app's tools folder. Python, FFmpeg, and ffprobe are reused from the existing setup.
+
+The test reads only E01's ordered source files and appends their tracks with mkvmerge. It does not make source copies, move your videos, or re-encode audio/video. It creates an episode folder under **Videos/LFDH MKVToolNix/E01 MKVToolNix Test** with the finished MKV, song chapters, an ordered source list, the exact mkvmerge options, a log, and result.json. Different codec configurations are left for MKVToolNix to assess instead of the app's conservative FFmpeg fast-join signature check.
+
+An MKVToolNix warning or failed duration/chapter/decode check keeps the candidate as **NEEDS-REVIEW.mkv**, not an accepted finished file. Fatal append errors leave the log and no finished output. No existing output is overwritten. Check the result's transitions and audio sync manually even if automatic checks pass; successful decoding cannot establish perceptual correctness. These warnings and decoding checks matter when codec configuration changes between clips. Full decoding validation adds time even though appending does not re-encode.
+
+From PowerShell in the app folder, the equivalent command is:
+
+```powershell
+& "$env:LOCALAPPDATA\MergeGoblin\venv\Scripts\python.exe" .\e01_mkvmerge.py --plan .\work\plan.json
+```
+
+Optional `--output "D:\Test output"` selects the parent folder. Optional `--mkvmerge "C:\Custom tools\MKVToolNix\mkvmerge.exe"` selects a custom executable. To repeat a test without replacing the prior output, select a new output parent and use the wrapper again. The saved options are available for inspection and target a separate manual-rerun.mkv; the wrapper provides the no-overwrite checks.
+
+The compatible-file integration test checks that output compressed video and audio packet hashes equal the original packets in order, plus chapter and playback decoding checks. Additional tests cover mixed resolution, warning handling, preservation of originals, changed inputs, and refusal to overwrite outputs. Actual E01 media and the Windows launcher still need to be tested on your PC.
+
 ## What has actually been checked
 
 The supplied filename list contains **201 files and 25 guest groups**, after normalizing two spelling variations. Names are suitable for automatic matching, but do not encode episode order or number. Guster has one file, Todd Rundgren two, and Jose Feliciano three; these counts are reasons to check completeness, not proof of missing clips.
