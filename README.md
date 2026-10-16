@@ -10,6 +10,28 @@ Live from Daryl's House - E07 - Featured Artist.mkv
 
 The episode number and featured artist/special name come from the playlist title, including the channel's `#10 - Daryl Hall hosts Chromeo…` format, never an artist-name guess from a local clip. E32 is named `Retrospective 2`, and E39 is named `New Years Eve Special`. Numbers 1–91 are in scope. Range collections such as `Episodes 1 - 10` are excluded. Windows-invalid characters in artist names are replaced with ` - `.
 
+## Episode folders with ordered playlists: preserve mixed-format originals
+
+**Create-Episode-Playlists.bat** is the recommended fallback for the incompatible episodes. It creates a folder per episode containing **Play Episode.m3u8**, **Play Episode.bat**, and **Episode Info.txt**. The playlist references your original files in their verified order. Nothing is moved, copied, resized, re-encoded, or merged. This requires the original files to stay accessible at their current paths, including any network shares.
+
+1. Download/extract the update and copy **episode_playlists.py** and **Create-Episode-Playlists.bat** into your existing app folder beside the **work** folder. No rescan, dependency install, or metadata download is needed.
+2. Double-click **Create-Episode-Playlists.bat**. It reads the existing `work/plan.json` and **Videos/LFDH Original Quality/batch-summary.json**. By default it creates playlists only for episodes reported as HELD or NEEDS REVIEW by MKVToolNix, leaving successful merged MKVs alone. For the supplied batch outcome, that means the 18 incompatible episodes.
+3. Open **Videos/LFDH Episode Playlists**, open an episode folder, and double-click **Play Episode.bat**. It finds VLC in its standard installation folders or VLC/mpv on PATH. It disables shuffle/repeat for this playback. Alternatively open **Play Episode.m3u8** directly in your player.
+4. If no player is installed, install VLC from <https://www.videolan.org/vlc/> or run `winget install --id VideoLAN.VLC --exact` in PowerShell.
+
+The videos retain their original quality/resolution and stay in their original locations. The new episode folders contain references, not duplicate media. Each clip is a selectable playlist item rather than a chapter embedded in one merged file. Brief transitions may occur when the player changes codecs or resolutions. This is ordered playback of the original files, not a newly merged video.
+
+Changed, missing, or ambiguous clips are held instead of silently omitted. Matching issues are not bypassed, and partial episodes are not presented as complete. Repeating creation leaves identical generated files alone; manually edited generated files and unknown existing files are preserved rather than overwritten. A summary is written in the output folder; if a different summary already exists, the next report gets a numbered filename.
+
+From PowerShell in the app folder, optional commands are:
+
+```powershell
+& "$env:LOCALAPPDATA\MergeGoblin\venv\Scripts\python.exe" .\episode_playlists.py --episodes 1 3 4 5 6 7 8 9 10
+& "$env:LOCALAPPDATA\MergeGoblin\venv\Scripts\python.exe" .\episode_playlists.py --all-matched
+```
+
+`--episodes` explicitly selects episodes, including ones already merged. `--all-matched` creates playlists for every fully matched episode, including successful MKV merges. Both modes still hold incomplete/changed episodes. Optional `--batch-summary`, `--plan`, and `--output` allow custom locations. The Python program uses only the standard library and the existing plan; neither MKVToolNix nor FFmpeg is required for folder generation. Playback requires VLC/mpv or another M3U8-compatible player. Playlist ordering, URL encoding of Unicode/special characters, repeat runs, source preservation, episode selection, and refusal to overwrite user edits are tested; the Windows player launcher still needs to run on your PC.
+
 ## Batch MKVToolNix: original quality and resolution
 
 **Batch-MKVToolNix.bat** processes the complete, unambiguous episodes in your existing `work/plan.json`. It never re-encodes, resizes, changes frame rate, or converts audio. Your source files remain at their existing paths. Each accepted episode is written as one MKV with song chapters and the planned episode number/name.
